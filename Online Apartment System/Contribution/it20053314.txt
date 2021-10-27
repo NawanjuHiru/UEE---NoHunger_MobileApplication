@@ -1,0 +1,14 @@
+As IT20053314 ,
+
+HTML ,CSS ,JS files
+Homepage
+Myaccount
+search
+
+
+PHP files
+register
+profile
+Update_myaccount
+Update_register
+Delete_myaccount

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<title>My account Page</title>
+		<link rel="stylesheet" type="text/css" href="style/myaccount.css"> 
+		<script src="js/myaccount.js"></script>
+		
+	</head>
+<style>
+ body
+{
+  background-image:url("image/back1.jpeg");
+}
+</style>
+	
+	<body>
+	<div id="main">
+			<nav>
+				<img src="image/logo.jpg" width="350" height="170">
+				<ul>
+					<li><a href="Homepage.html">Home</a></li>
+					<li><a href="contact.html">Contact Us</a></li>
+					<li><a href="about.html">About Us</a></li>
+					<li><a href="Apartment.html">Apartments</a></li>
+					<li><a href="search.html">Search</a></li>
+					<a href="myaccount.html">
+					<button class ="myaccount" type = "button">My Account</button></a>
+					<a href="login.html">
+					<button class ="logout" type = "button"> Log Out</button>
+					</a>
+					
+				</ul>
+			</nav>
+			</div>
+		<br>
+		<center>
+	<h1> Create profile</h1><br>
+	
+	<a href="profile.php"><button   class="prof" type="button" >My Profile</button></a><br><br>
+	
+	<hr id ="test"><br>
+	<form action="myaccount.php" target="_blank" method="POST" onsubmit="return checkPasswords()">
+	<table>
+	<tr><td>
+	<label>First Name</label></td>
+	<td>
+	<input type="text" id="fname" name="fname" style="width:500px;right-align=200px;" placeholder="Enter first name" ><br><br>
+	</td>
+	</tr><tr>
+	<td>
+	<label>Last Name</label></td>
+	<td>
+	<input type="text" id="sname" name="sname" style="width:500px;right-align=200px;"  placeholder="Enter surname" ><br><br>
+	</td>
+	</tr><tr>
+	<td>
+	<label>Mobile Number </label></td>
+	<td>
+	<input type="number" id="mobile" name="mobile" style="width:500px;right-align=200px;" pattern="[0-9]{10}" placeholder="Enter mobile no" ><br><br>
+	</td>
+	</tr><tr>
+	<td>
+	<label>Email address</label></td>
+	<td>
+	<input type="text" id="emailAdd" name="emailAdd" style="width:500px;right-align=200px;" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,3}{10}" placeholder="Enter email"><br><br>
+	</td></tr>
+	<tr><td>
+	<label>Address</label></td>
+	<td>
+	<input type= "text" id="addr" name="addr"  style="width:500px;right-align=200px;" placeholder="Enter address" ><br><br>
+	</td></tr>
+	<tr><td>
+	<label>Country</label></td>
+	<td>
+	<input type="text" id="country" name="country" style="width:500px;left-align=200px;" placeholder="Enter country" ><br><br>
+	</td></tr>
+	<tr><td>
+	<label>City/Town </label></td>
+	<td>
+	<input type="text" id="town" name="town" style="width:500px;left-align=200px;" placeholder="Enter city/town" ><br><br></td>
+	</tr>
+	<tr><td>
+	<label>Payment Details</label>
+	<label>Credi Card No</label></td>
+	<td>
+	<input type="text" id="card" name="card" style="width:500px;left-align=200px;" placeholder="---- ---- ----" ><br><br></td>
+	</tr><tr><td>
+	<label>Billing Email </label></td>
+	<td>
+	<input type="text" id="email" name="mail" style="width:500px;left-align=200px;" placeholder="someone@gmail.com" ><br><br></td>
+	</tr>
+	<tr><td>
+	<label>Billing address </label></td>
+	<td>
+	<input type="text" id="add" name="add" style="width:500px;left-align=200px;" placeholder="Enter billing address" ><br><br></td>
+	</tr><tr>
+	<td>
+	<label>Current password</label></td>
+	<td>
+	<input type="password" id="cpwd"  name="cpwd" style="width:500px;left-align=200px;"  placeholder="Enter current password" ><br><br>
+	</td></tr>
+	<tr>
+	<td>
+	<label>New password</label></td>
+	<td>
+	<input type="password" id="pwd"  name="pwd" style="width:500px;left-align=200px;"  placeholder="Enter new password"><br><br>
+	</td></tr>
+	<tr><td>
+	<label>Re-Enter Password</label></td>
+	<td>
+	<input type="password" id="rpwd"  name="rpwd" style="width:500px;left-align=200px;" placeholder="Re-enter password"><br><br>
+	</td></tr>
+	</table>
+	Confirm details
+	<input type="checkbox" id="confirm"  name="confirm"  onclick="confirmbutton()" disabled><br><br>
+	
+	<input type="submit" id="btn1"  name="btn1" value="Create Profile" ><br><br>
+	
+	
+	
+	</form>
+	<hr id ="test"><br>
+	<a href="Update_myaccount.html"><button   class="prof" type="button" >Update Profile</button></a><br><br>
+	<a href="Delete_myaccount.php"><button   class="prof" type="button" >Delete Profile</button></a><br><br>
+		<br>
+
+<div class="footer">
+			<div class="inner-footer">
+				<div class="footer-item">
+				<h3>Dazzale Homes</h3>
+				<h3></h3>
+				<p>As the No.01 premier licensed online apartment sales system in sri lanka,Dazzale Homes Pvt Ltd. is known for their incomparable professionalism in handling housing and apartment resolutions, fulfilling complete customer satisfaction with a vision, thriving with an unfaltering mission while contributing to sustainability and country's infrastructure.</p>
+				<a href="https://maps.google.lk/">
+				<img src="image/map.jpg" width="250" height="150">
+				</a>
+			</div>
+			<div class="footer-item">
+				<h2>Site Map</h2>
+				<div class="border"></div>
+				<ul>
+					<li><a href="Homepage.html">Home</a></li>
+					<li><a href="contact.html">Contact Us</a></li>
+					<li><a href="about.html">About Us</a></li>
+					<li><a href="purchaseApart.html">Purchase an apartment</a></li>
+					<li><a href="rentApart.html">Rent an apartment</a></li>
+					<li><a href="register.html">Sign Up</a></li>
+					<li><a href="login.html">Sign In</a></li>
+					<li><a href="add.html">Add and Remove advertisement</a></li>
+					
+				</ul>
+			</div>
+				
+			<div class="footer-item">
+				<h2>Contact Us</h2>
+				<div class="border"></div>
+				<ul>
+					<li><a href="#">Dazzale Homes</a></li>
+					<a href="https://maps.google.lk/">
+					<li><i class="map-marker" aria-hidden="true"></i> No.28/2,Palawatta Road,Stanmore Crecent,Colombo 07,Sri Lanka</li><br>
+					</a>
+					<a href="https://www.sliit.lk">
+					<li><i class="phone" aria-hidden="true"></i> Senkada:(+94-763451877)</li>
+					</a>
+					<a href="https://http://www.sliit.lk">
+					<li><i class="phone" aria-hidden="true"></i> Hotline:(+94-0112888445)</li>
+					</a>
+					<a href="https://www.google.com/gmail">
+					<li><i class="envelope" aria-hidden="true"></i> DazzaleHomes@gmail.com</li>
+					</a>
+				</ul>
+			</div>
+			
+			</div>
+		<center>
+	
+		<h2>Copyright © 2020 Online Apartment Sales system Powered by ABC Technologies ®. All rights reserved.</h2>
+	
+		</center>
+			
+		</div>
+
+		</body>
+</html>
+		

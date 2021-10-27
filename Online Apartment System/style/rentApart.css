@@ -1,0 +1,302 @@
+body{
+	
+	background-image: url("image/background4.jpeg");
+	background-size:cover;
+	padding: 0;
+	width:100%;
+	background-color: green;
+	background-attachment:fixed;
+	background-size:100%;
+}
+
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: verdna;
+}
+main{
+	padding: 50px;
+	width: 80%;
+	margin: auto;
+	min-width: 100px;
+}
+nav{
+	width: 100%;
+	height: 170px;
+	background-color: #0007;	
+	line-height: 100px;
+}
+nav ul{
+	float: right;
+	margin-right: 30px;
+}
+nav ul li{
+	list-style-type: none;
+	display: inline-block;
+	transition: 0.8s all;
+}
+
+nav ul li a{
+	text-decoration: none;
+	color: white;
+	padding : 30px;
+	font-weight: bold;
+	font-size:15px
+}
+nav ul li a:hover{
+	background-color: green;
+}
+.myaccount
+{
+	height: 50px;
+	width: 150px;
+	background: lightgreen;
+	border: none;
+	color: black;
+	border-radius: 25px;
+}
+.myaccount:hover{
+	background: yellow;
+	cursor: pointer;
+}
+.logout
+{
+	height: 50px;
+	width: 150px;
+	background: lightgreen;
+	border: none;
+	color: solid black;
+	border-radius: 25px;
+}
+.logout:hover{
+	background: yellow;
+	cursor: pointer;
+}
+a{
+	text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 700px; 
+  background-color:fog gray;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.room-features {
+	overflow: hidden;
+	padding-bottom: 15px;
+	margin-bottom: 12px;
+	border-bottom: 1px solid #f3f3f3;
+	margin-left: -30px;
+	margin-right: -20px;
+}
+.room-features .room-info {
+	padding-left: 30px;
+	padding-right: 40px;
+}
+
+.room-features .room-info .size {
+	display: inline-block;
+	margin-right: 110px;
+	float: left;
+}
+
+.room-features .room-info .size p {
+	font-size: 18px;
+	margin-bottom: 4px;
+}
+
+.room-features .room-info .size span {
+	color: black;
+	font-size: 18px;
+	font-weight: 400;
+	margin-left: 10px;
+}
+
+.room-features .room-info .beds {
+	display: inline-block;
+	margin-right: 110px;
+	float: left;
+}
+
+.room-features .room-info .beds p {
+	font-size: 18px;
+	margin-bottom: 9px;
+}
+
+.room-features .room-info .beds span {
+	color: black;
+	font-size: 18px;
+	font-weight: 500;
+	margin-left: 10px;
+}
+
+.room-features .room-info .baths {
+	display: inline-block;
+	margin-right: 110px;
+	float: left;
+}
+
+.room-features .room-info .baths p {
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+
+.room-features .room-info .baths span {
+	color: black;
+	font-size: 18px;
+	font-weight: 500;
+	margin-left: 10px;
+}
+
+.room-features .room-info .garage {
+	display: inline-block;
+	float: left;
+	color:black;
+}
+
+.room-features .room-info .garage p {
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+
+.room-features .room-info .garage span {
+	color: black;
+	font-size: 18px;
+	font-weight: 500;
+	margin-left: 10px;
+}
+
+.room-price {
+	display: inline-block;
+}
+
+.room-price p {
+	color: black;
+	font-size: 20px;
+	margin-bottom: -7px;
+}
+
+.room-price span {
+	color: black;
+	font-size: 24px;
+	font-weight: 500;
+}
+.right{
+	float: right;
+}
+.reserve
+{
+	background-color: green;
+	border: none;
+	color: black;
+	padding: 16px 32px;
+	text-align: center;
+	font-size: 16px;
+	margin: 4px 2px;
+	opacity: 0.6;
+	transition: 0.3s;
+}
+
+.reserve:hover{
+	cursor: pointer;
+	opacity: 1
+}
+.Rent
+{
+	background-color: lightblue;
+	border: none;
+	color: black;
+	padding: 16px 32px;
+	text-align: center;
+	font-size: 16px;
+	margin: 4px 2px;
+	opacity: 0.6;
+	transition: 0.3s;
+}
+
+.Rent:hover{
+	cursor: pointer;
+	opacity: 1
+}
+
+
+.footer{
+	width: 100%;
+	height:600px;
+	background: #00121b;
+	display: block;
+}
+.inner-footer{
+	width: 95%;
+	margin: auto;
+	padding: 30px 10px;
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	justify-content: center;
+}
+.footer-item{
+	width: 25%;
+	padding: 10px 20px;
+	color:white;
+}
+h3{
+	padding: 10px ;
+	font-size: 15px;
+	color:solid black;
+}
+p{
+	color: white;
+	font-size: 16px;
+	line-height: 35px;
+}
+h2{
+	margin: 10px ;
+	color: white;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+.border{
+	height: 4px;
+	width: 50px;
+	background: orange;
+}
+ul{
+	list-style: none;
+	color: white;
+	font-size: 16px;
+	letter-spacing: 0.5px;
+}
+ul a{
+	text-decoration: none;
+	outline: none;
+	color: white;
+	
+}
+ul a:hover{
+	color: orange;
+}
+ul li{
+	margin: 10px ;
+	height: 30px;
+}
+
+@media screen and (max-width: 1085px){
+	.footer-item{
+		width: 50%;
+	}
+}
+

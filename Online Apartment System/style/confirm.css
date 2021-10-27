@@ -1,0 +1,266 @@
+body{
+	background-image: url("../image/back2.jpg");
+	background-size:cover;
+	padding: 0;
+	width:100%;
+	background-color: green;
+	background-attachment:fixed;
+	background-size:100%;
+}
+h1{
+	color: black;
+	margin-bottom: 50px; 
+	font-size: 45px;
+	letter-spacing: 2px;
+	text-align: center;
+	font-weight:bold;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: verdna;
+}
+
+main{
+	padding: 50px;
+	width: 80%;
+	margin: auto;
+	min-width: 100px;
+
+}
+nav{
+	width: 100%;
+	height: 170px;
+	background-color: #0007;	
+	line-height: 100px;
+}
+nav ul{
+	float: right;
+	margin-right: 30px;
+}
+nav ul li{
+	list-style-type: none;
+	display: inline-block;
+	transition: 0.8s all;
+}
+
+nav ul li a{
+	text-decoration: none;
+	color: white;
+	padding : 30px;
+	font-weight: bold;
+	font-size:15px
+}
+nav ul li a:hover{
+	background-color: green;
+}
+.myaccount
+{
+	height: 50px;
+	width: 150px;
+	background: lightgreen;
+	border: none;
+	color: black;
+	border-radius: 25px;
+}
+.myaccount:hover{
+	background: yellow;
+	cursor: pointer;
+}
+.cpbody {
+  margin: auto;
+  width: 100%;
+  padding-top:30px;
+}
+
+#slideshow { 
+  position: relative; 
+height: 100%;
+  width: 100%;
+}
+
+#slideshow > img { 
+position: absolute; 
+}
+
+
+.containimage{
+height: 500px; 
+overflow: hidden; 
+}
+
+.containimage img { 
+width: 100%;
+}
+
+
+.imageflex{
+ width: 100%;
+ overflow: hidden;
+}
+.custom-select {
+ 
+  font-family: Arial;
+ 
+   text-decoration: none;
+	color:white ;
+	background-color:#0007;
+	font-weight: bold;
+	font-size:15px
+}
+.career{
+width:1000px;
+height:140px;
+margin: auto;
+font-family: Karla;
+color: #424242;
+border-left: 1px solid #a2c0ef;
+background-color: palegreen;
+}
+
+.slidecontainer {
+height: 500px;
+width: 100%;
+margin: auto;
+  overflow: hidden;
+}
+.esb {
+  font-family: karla;
+}
+
+.positiontest{
+width: 1000px;
+margin: auto;
+margin-top:-30px;
+}
+
+p{
+padding: 1em;
+font-family: sans-serif;
+line-height: 1.5em;
+margin-top: 1.30952381em;
+margin-bottom: 1em;
+max-width: 1000px;
+margin: auto;
+}
+.careercontent{
+width:1000px;
+height:450px;
+margin: auto;
+font-family: Karla;
+color: #424242;
+border-left: 1px solid #a2c0ef;
+background-color: palegreen;
+}
+h2.sh{
+  text-align: left;
+  font-weight: normal;
+  font-size: 2em;
+  color: darkgreen;
+  padding: .5em;
+  margin-bottom: -10px;
+
+}
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+
+.footer{
+	width: 100%;
+	height:600px;
+	background: #00121b;
+	display: block;
+}
+.innerFooter{
+	width: 95%;
+	margin: auto;
+	padding: 30px 10px;
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	justify-content: center;
+}
+.footerItem{
+	width: 25%;
+	padding: 10px 20px;
+	color:white;
+}
+h3{
+	padding: 10px;
+	font-size: 15px;
+	color: white;
+}
+.footerItem p{
+	color: #fff;
+	font-size: 16px;
+	text-align: justify;
+	line-height: 25px;
+}
+h2{
+	margin: 10px;
+	color: white;
+	font-size: 16px;
+	text-transform: uppercase;
+}
+.border{
+	height: 4px;
+	width: 50px;
+	background: orange;
+}
+ul{
+	list-style: none;
+	color: white;
+	font-size: 16px;
+	letter-spacing: 0.5px;
+}
+ul a{
+	text-decoration: none;
+	outline: none;
+	color: white;
+}
+ul a:hover{
+	color: orange;
+}
+ul li{
+	margin: 10px ;
+	height: 30px;
+}
+
+
+@media screen and (max-width: 1085px){
+	.footer-item{
+		width: 50%;
+	}
+}
+.logout
+{
+	height: 50px;
+	width: 150px;
+	background: lightgreen;
+	border: none;
+	color: solid black;
+	border-radius: 25px;
+}
+.logout:hover{
+	background: yellow;
+	cursor: pointer;
+}
+.sub
+{
+	height: 60px;
+	width: 350px;
+	background: slategrey;
+	border: none;
+	font-size:15px;
+	color: black;
+	border-radius: 35px;
+}
+.sub:hover{
+	background: darkgrey;
+	cursor: pointer;

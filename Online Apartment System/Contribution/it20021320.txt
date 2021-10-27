@@ -1,0 +1,16 @@
+As IT20021320 ,
+
+HTML ,CSS ,JS files
+login
+about
+confirm
+Update_add
+Upadte_payment
+Upadte_register
+
+PHP files
+add
+payment
+Update_add
+Upadte_payment
+Delete_add

@@ -1,0 +1,207 @@
+//IT20022006
+//Nawanjana M.H
+//Batch 5.2
+
+
+
+package IT20022006;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		Weekend student1 = new Weekend();
+		student1.addDetails("Jane", "Malabe", 'F', 1990, "DS", "QA");
+		String studentid = student1.generateID();
+		student1.addMark(56, 34, 12, 46, 78);
+		student1.showDetails();
+		System.out.println("Studnet ID " + studentid);
+		System.out.println();
+		
+		Weekday student2 = new Weekday();
+        student2.addDetails("Jim", "Kaluthara", 'M', 1991, "SE", "Tuesday");
+        String studentid2 = student2.generateID();
+        student2.addMark(78, 89, 45, 87, 90);
+        student2.showDetails();
+        System.out.println("Studnet ID " + studentid2);
+
+        Enroll sem1 = new Enroll();
+        sem1.enrollStudent(studentid, "IT");
+        sem1.enrollStudent(studentid2, "SE");
+        System.out.println("\n\nEnrooed student details");
+        sem1.displayEnrolledStudents();
+
+        Specialization spe = new Specialization();
+        spe.addSpecialization("SE", 2.75);
+        spe.addSpecialization("DS", 3.5);
+    }
+}
+
+
+
+//java program to demonstrate the student record system
+package IT20022006;
+
+import java.util.Random;
+
+//creating student class
+public class Student {
+	private String name;
+	private String address;
+	private char sex;
+	private int bornYear;
+	private String specialization;
+	@SuppressWarnings("unused")
+	private String studentid;
+
+	public void addDetails(String name, String address, char sex, int bornYear, String specialization) {
+		// TODO Auto-generated method stub
+		this.name = name;
+		this.address = address;
+		this.sex = sex;
+		this.bornYear = bornYear;
+		this.specialization = specialization;
+	}
+	
+	public String generateID() throws Exception{
+		// TODO Auto-generated method stub
+		Random random = new Random();
+					
+		String noAfterIT = String.valueOf(random.nextInt(10000));
+		int x = noAfterIT.length();
+		while (x < 5) {
+			x += 1;
+			noAfterIT = noAfterIT.concat("0");
+		}
+		if (noAfterIT.length() <= 4) {
+			throw new Exception("Invalid ID");
+		}
+		String studentid = "IT" + noAfterIT;
+		this.studentid = studentid;
+		return studentid;
+	}
+	
+	public void showDetails() {
+		// TODO Auto-generated method stub
+		System.out.println("Student name "+this.name);
+        System.out.println("Student Address "+this.address);
+        System.out.println("Gender "+this.sex);
+        System.out.println("Student year "+this.bornYear);
+        System.out.println("Student Specialization " +this.specialization);
+	}
+}
+
+
+
+package IT20022006;
+
+import java.util.ArrayList;
+
+//creating weekend class
+public class Weekend extends Student{
+	private String jobTitle;
+	
+	//constructor
+	//seven parameters need to be taken to the constructor
+	//when a Weekend object is created, a Student object is also created
+	public void addDetails(String name, String address, char sex, int bornYear, String specialization, String jobTitle) {
+		// TODO Auto-generated method stub
+		super.addDetails(name, address, sex, bornYear, specialization);
+		this.jobTitle = jobTitle;
+	}
+
+	public void addMark(int m1, int m2, int m3, int m4, int m5) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> marks = new ArrayList<Integer>();
+	    marks.add(m1);
+	    marks.add(m2);
+	    marks.add(m3);
+	    marks.add(m4);
+	    marks.add(m5);
+	}
+
+	public void showDetails() {
+		// TODO Auto-generated method stub
+		super.showDetails();
+	    System.out.println("Student Job Title " + this.jobTitle);
+//	    System.out.println("Student ID "+this.studentid);
+		}
+}
+
+
+
+package IT20022006;
+
+import java.util.ArrayList;
+
+//creating weekday class
+public class Weekday extends Student{
+	private String freeDay;
+	
+	//constructor
+	//seven parameters needs to be taken to the constructor
+	//when a Weekday object is created, a Student object is also created
+	
+	public void addDetails(String name, String address, char sex, int bornYear, String specialization, String freeDay) {
+		// TODO Auto-generated method stub
+		super.addDetails(name, address, sex, bornYear, specialization);
+		this.freeDay = freeDay;
+	}
+
+	public void addMark(int m1, int m2, int m3, int m4, int m5) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> marks = new ArrayList<Integer>();
+	    marks.add(m1);
+	    marks.add(m2);
+	    marks.add(m3);
+	    marks.add(m4);
+	    marks.add(m5);
+	}
+
+	public void showDetails() {
+		// TODO Auto-generated method stub
+		super.showDetails();
+        System.out.println("Student Freeday "+this.freeDay);
+//        System.out.println("Student ID "+this.studentid);
+	}
+}
+
+
+
+package IT20022006;
+
+import java.util.HashMap;
+import java.util.Map;
+
+//creating student enroll
+public class Enroll {
+	@SuppressWarnings("unused")
+	private String studentid;
+    @SuppressWarnings("unused")
+	private String specialize;
+    
+    HashMap <String, String> enroll = new HashMap <String, String>();
+
+	public void enrollStudent(String studentid, String specialize) {
+		// TODO Auto-generated method stub
+		enroll.put(studentid, specialize);
+		enroll.put(studentid,specialize);
+	}
+	
+	public void displayEnrolledStudents() {
+		// TODO Auto-generated method stub
+		for (Map.Entry<String, String> entry:enroll.entrySet()) {
+			System.out.println(entry.getKey()+" : "+entry.getValue());
+		}
+	}
+}
+
+
+
+package IT20022006;
+
+public class Specialization {
+
+	public void addSpecialization(String specialize, double gpa) {
+		// TODO Auto-generated method stub
+
+	}
+}

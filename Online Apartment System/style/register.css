@@ -1,0 +1,267 @@
+body{
+	
+	background-image: url("image/back3.jpeg");
+	background-size:cover;
+	padding: 0;
+	width:100%;
+	background-color: green;
+	background-attachment:fixed;
+	background-size:100%;
+}
+
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: verdna;
+}
+
+
+nav{
+	width: 100%;
+	height: 170px;
+	background-color: #0007;	
+	line-height: 100px;
+}
+nav ul{
+	float: right;
+	margin-right: 30px;
+}
+nav ul li{
+	list-style-type: none;
+	display: inline-block;
+	transition: 0.8s all;
+}
+
+nav ul li a{
+	text-decoration: none;
+	color: white;
+	padding : 30px;
+	font-weight: bold;
+	font-size:15px
+}
+nav ul li a:hover{
+	background-color: green;
+}
+
+
+.myaccount
+{
+	height: 50px;
+	width: 150px;
+	background: lightgreen;
+	border: none;
+	color: black;
+	border-radius: 25px;
+}
+
+.myaccount:hover{
+	background: yellow;
+	cursor: pointer;
+}
+
+.logout
+{
+	height: 50px;
+	width: 150px;
+	background: lightgreen;
+	border: none;
+	color: solid black;
+	border-radius: 25px;
+}
+
+.logout:hover{
+	background: yellow;
+	cursor: pointer;
+}
+
+.input-container {
+  display: -ms-flexbox; 
+  display: flex;
+  width: 150%;
+  text-align: left;
+  right: 10px;
+  left: 10%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.icon {
+  padding: 20px;
+  background: dodgerblue;
+  color: white;
+  min-width: 100px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid dodgerblue;
+}
+
+
+.btn {
+  background-color: dodgerblue;
+  color: white;
+  padding: 15px 17px;
+  border: none;
+  cursor: pointer;
+  width: 150%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+.or {
+	text-align: center;
+	font-family: 'Roboto',sans-serif;
+	display: block;
+	font-size: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.login-facebook,
+.login-twitter,
+.login-gmail {
+	width: 55%;
+	padding: 20px 17px;
+	color: #eee;
+	margin: 8px 0;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+	cursor: pointer;
+}
+.login-facebook{
+	background: #3b5998;
+}
+.login-twitter {
+	background: #55acee;
+}
+.login-gmail {
+	background: #F34115;
+}
+.login-facebook span,
+.login-twitter span,
+.login-gmail span{
+	font-family: "Times New Roman", Times, serif;
+	font-weight: normal;
+	font-size: 17px;
+	-webkit-text-transform: capitalize;
+	-moz-text-transform: capitalize;
+	-ms-text-transform: capitalize;
+	-o-text-transform: capitalize;
+	text-transform: capitalize;
+}
+.login-facebook i,
+.login-twitter i,
+.login-gmail i{
+	margin-right: 10px;
+	font-size: 17px;
+}
+.login-facebook:hover,
+.login-twitter:hover,
+.login-gmail:hover{
+	background-color: lightblue;
+}
+
+.footer{
+	width: 100%;
+	height:600px;
+	background: #00121b;
+	display: block;
+}
+.inner-footer{
+	width: 95%;
+	margin: auto;
+	padding: 30px 10px;
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	justify-content: center;
+}
+.footer-item{
+	width: 25%;
+	padding: 10px 20px;
+	color:white;
+}
+
+h1{
+	padding: 10px ;
+	font-size: 35px;
+	color: solid black;
+}
+
+h3{
+	padding: 10px ;
+	font-size: 15px;
+	color: white;
+}
+
+p{
+	color: white;
+	font-size: 16px;
+	line-height: 35px;
+}
+
+h2{
+	margin: 10px ;
+	color: white;
+	font-size: 16px;
+	text-transform: uppercase;
+}
+.border{
+	height: 4px;
+	width: 50px;
+	background: orange;
+}
+
+ul{
+	list-style: none;
+	color: white;
+	font-size: 16px;
+	letter-spacing: 0.5px;
+}
+
+ul a{
+	text-decoration: none;
+	outline: none;
+	color: white;
+	
+}
+
+ul a:hover{
+	color: orange;
+}
+ul li{
+	margin: 10px ;
+	height: 30px;
+}
+.box{
+	margin-right:260px;
+}
+
+@media screen and (max-width: 1085px){
+	.footer-item{
+		width: 50%;
+	}
+}
+.prof{
+	height: 50px;
+	width: 300px;
+	background: Green;
+	border: none;
+	color: black;
+	border-radius: 25px;
+}
+.prof:hover{
+	background: yellow;
+	cursor: pointer;
+}
