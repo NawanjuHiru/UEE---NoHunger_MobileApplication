@@ -5,16 +5,18 @@ final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final CollectionReference _Collection = _firestore.collection('Donation');
 
 class donationService {
+  static get message => null;
+
   //add donation
   static Future<Response> addDonation({
-    String name,
-    String email,
-    int mobileNumber,
-    String location,
-    String category,
-    String description,
+    required String name,
+    required String email,
+    required int mobileNumber,
+    required String location,
+    required String category,
+    required String description,
   }) async {
-    Response response = Response();
+    Response response = Response(code: null, message: message);
     DocumentReference documentReferencer = _Collection.doc();
 
     Map<String, dynamic> data = <String, dynamic>{

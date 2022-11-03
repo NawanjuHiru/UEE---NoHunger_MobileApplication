@@ -8,11 +8,11 @@ class Donation {
   String description;
 
   Donation(
-      {this.id,
-      this.name,
-      this.email,
-      this.mobileNumber,
-      this.location,
-      this.category,
-      this.description});
+      {required this.id,
+      required this.name,
+      required this.email,
+      required this.mobileNumber,
+      required this.location,
+      required this.category,
+      required this.description});
 }

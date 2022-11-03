@@ -6,5 +6,5 @@ class FlutterVizBottomNavigationBarModel {
   IconData icon;
   String label;
 
-  FlutterVizBottomNavigationBarModel({ this.icon,  this.label});
+  FlutterVizBottomNavigationBarModel({ required this.icon,  required this.label});
 }

@@ -404,14 +404,31 @@ class _AddDonationScreen extends State<AddDonationScreen> {
                   alignment: Alignment.center,
                   child: MaterialButton(
                     onPressed: () async {
-                      if (_formKey.currentState.validate()) {
-                        _formKey.currentState.save();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DonationListScreen(),
-                          ),
-                        );
+                      if (_formKey.currentState!.validate()) {
+                        var response = await donationService.addDonation(
+                          name: name.text,
+                          email: email.text,
+                          mobileNumber: mobileNumber.hashCode,
+                          location: location.text,
+                          category: category.text,
+                          description: description.text);
+                        if (response.code != 200) {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  content: Text(response.message.toString()),
+                                );
+                              });
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  content: Text(response.message.toString()),
+                                );
+                              });
+                        }
                       };
                     },
                     color: Color(0xff4c2cf2),
