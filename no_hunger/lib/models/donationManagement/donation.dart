@@ -1,10 +1,11 @@
 class Donation {
-  String? id;
-  String? name;
-  String? email;
-  int? mobileNumber;
-  String? location;
-  String? description;
+  String id;
+  String name;
+  String email;
+  int mobileNumber;
+  String location;
+  String category;
+  String description;
 
   Donation(
       {this.id,
@@ -12,5 +13,6 @@ class Donation {
       this.email,
       this.mobileNumber,
       this.location,
+      this.category,
       this.description});
 }

@@ -1,5 +1,3 @@
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
-
 import 'package:flutter/material.dart';
 import 'package:no_hunger/screens/donationManagement/donationList.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
@@ -18,6 +16,7 @@ class _AddDonationScreen extends State<AddDonationScreen> {
   final email = TextEditingController();
   final mobileNumber = TextEditingController();
   final location = TextEditingController();
+  final category = TextEditingController();
   final description = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -88,14 +87,13 @@ class _AddDonationScreen extends State<AddDonationScreen> {
         onTap: (value) {},
       ),
       body: Padding(
-        key: _formKey,
         padding: EdgeInsets.all(16),
         child: SingleChildScrollView(
-          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
+            key: _formKey,
             children: [
               Text(
                 "Add New Donation",
@@ -119,7 +117,7 @@ class _AddDonationScreen extends State<AddDonationScreen> {
                     fontSize: 14,
                     color: Color(0xff000000),
                   ),
-                  validator: (value){
+                  validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return 'This field is required';
                     }
@@ -168,7 +166,7 @@ class _AddDonationScreen extends State<AddDonationScreen> {
                     fontSize: 14,
                     color: Color(0xff000000),
                   ),
-                  validator: (value){
+                  validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return 'This field is required';
                     }
@@ -217,7 +215,7 @@ class _AddDonationScreen extends State<AddDonationScreen> {
                     fontSize: 14,
                     color: Color(0xff000000),
                   ),
-                  validator: (value){
+                  validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return 'This field is required';
                     }
@@ -266,7 +264,7 @@ class _AddDonationScreen extends State<AddDonationScreen> {
                     fontSize: 14,
                     color: Color(0xff000000),
                   ),
-                  validator: (value){
+                  validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return 'This field is required';
                     }
@@ -303,99 +301,101 @@ class _AddDonationScreen extends State<AddDonationScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      "Category",
-                      textAlign: TextAlign.start,
-                      overflow: TextOverflow.clip,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(65, 0, 0, 0),
-                      child: Container(
-                        width: 130,
-                        height: 50,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                        decoration: BoxDecoration(
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(0),
-                        ),
-                        child: DropdownButton(
-                          value: "Food",
-                          items: ["Food", "Grocery", "Food & Grocery"]
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          style: TextStyle(
-                            color: Color(0xff000000),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                          ),
-                          onChanged: (value) {},
-                          elevation: 8,
-                          isExpanded: true,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              TextFormField(
-                controller: description,
-                obscureText: false,
-                textAlign: TextAlign.start,
-                maxLines: 1,
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontStyle: FontStyle.normal,
-                  fontSize: 14,
-                  color: Color(0xff000000),
-                ),
-                validator: (value){
-                    if (value == null || value.trim().isEmpty) {
-                      return 'This field is required';
-                    }
-                  },
-                decoration: InputDecoration(
-                  disabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(22.0),
-                    borderSide: BorderSide(color: Color(0xff000000), width: 1),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(22.0),
-                    borderSide: BorderSide(color: Color(0xff000000), width: 1),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(22.0),
-                    borderSide: BorderSide(color: Color(0xff000000), width: 1),
-                  ),
-                  hintText: "Description",
-                  hintStyle: TextStyle(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                child: TextFormField(
+                  controller: category,
+                  obscureText: false,
+                  textAlign: TextAlign.start,
+                  maxLines: 1,
+                  style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                     fontSize: 14,
                     color: Color(0xff000000),
                   ),
-                  filled: true,
-                  fillColor: Color(0xffffffff),
-                  isDense: false,
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'TColor.fromARGB(255, 155, 135, 135)ired';
+                    }
+                  },
+                  decoration: InputDecoration(
+                    disabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(22.0),
+                      borderSide:
+                          BorderSide(color: Color(0xff000000), width: 1),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(22.0),
+                      borderSide:
+                          BorderSide(color: Color(0xff000000), width: 1),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(22.0),
+                      borderSide:
+                          BorderSide(color: Color(0xff000000), width: 1),
+                    ),
+                    hintText: "Category",
+                    hintStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14,
+                      color: Color(0xff000000),
+                    ),
+                    filled: true,
+                    fillColor: Color(0xffffffff),
+                    isDense: false,
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                child: TextFormField(
+                  controller: description,
+                  obscureText: false,
+                  textAlign: TextAlign.start,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 14,
+                    color: Color(0xff000000),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'This field is required';
+                    }
+                  },
+                  decoration: InputDecoration(
+                    disabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(22.0),
+                      borderSide:
+                          BorderSide(color: Color(0xff000000), width: 1),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(22.0),
+                      borderSide:
+                          BorderSide(color: Color(0xff000000), width: 1),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(22.0),
+                      borderSide:
+                          BorderSide(color: Color(0xff000000), width: 1),
+                    ),
+                    hintText: "Description",
+                    hintStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14,
+                      color: Color(0xff000000),
+                    ),
+                    filled: true,
+                    fillColor: Color(0xffffffff),
+                    isDense: false,
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  ),
                 ),
               ),
               Padding(
@@ -404,32 +404,15 @@ class _AddDonationScreen extends State<AddDonationScreen> {
                   alignment: Alignment.center,
                   child: MaterialButton(
                     onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        var response = await donationService.addDonation(
-                          name: name.text,
-                          email: email.text,
-                          mobileNumber: mobileNumber.hashCode,
-                          location: location.text,
-                          description: description.text,
+                      if (_formKey.currentState.validate()) {
+                        _formKey.currentState.save();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DonationListScreen(),
+                          ),
                         );
-                        if (response.code != 200) {
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  content: Text(response.message.toString()),
-                                );
-                              });
-                        } else {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                content: Text(response.message.toString()),
-                              );
-                            });
-                          }
-                      }
+                      };
                     },
                     color: Color(0xff4c2cf2),
                     elevation: 0,
