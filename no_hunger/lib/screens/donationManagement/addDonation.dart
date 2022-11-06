@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:no_hunger/screens/donationManagement/donationList.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
@@ -18,6 +19,12 @@ class _AddDonationScreen extends State<AddDonationScreen> {
   final location = TextEditingController();
   final category = TextEditingController();
   final description = TextEditingController();
+
+  Future<FirebaseApp> _initializeFirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+
+    return firebaseApp;
+  }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -404,7 +411,9 @@ class _AddDonationScreen extends State<AddDonationScreen> {
                   alignment: Alignment.center,
                   child: MaterialButton(
                     onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
+                      print("On press");
+                      // if (_formKey.currentState!.validate()) {
+                      //   print("validated");
                         var response = await donationService.addDonation(
                           name: name.text,
                           email: email.text,
@@ -429,7 +438,7 @@ class _AddDonationScreen extends State<AddDonationScreen> {
                                 );
                               });
                         }
-                      };
+                      // };
                     },
                     color: Color(0xff4c2cf2),
                     elevation: 0,
@@ -457,5 +466,14 @@ class _AddDonationScreen extends State<AddDonationScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp().whenComplete(() {
+      print("completed");
+      setState(() {});
+    });
   }
 }
