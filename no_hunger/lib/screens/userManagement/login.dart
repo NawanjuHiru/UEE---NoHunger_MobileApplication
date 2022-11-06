@@ -1,16 +1,33 @@
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:no_hunger/screens/userManagement/register.dart';
+import 'package:no_hunger/screens/dashboard/dashboard.dart';
 
-class LoginScreen extends StatelessWidget {
+import 'forgot.dart';
+
+import 'register.dart';
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool _isObscure3 = true;
+  bool visible = false;
+  final _formkey = GlobalKey<FormState>();
+  final TextEditingController emailController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
+
+  // final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffe6e6e6),
       body: Stack(
         alignment: Alignment.topLeft,
-        children: [
+        children: <Widget>[
           Container(
             margin: EdgeInsets.all(0),
             padding: EdgeInsets.all(0),
@@ -35,154 +52,211 @@ class LoginScreen extends StatelessWidget {
               border: Border.all(color: Color(0x4d9e9e9e), width: 1),
             ),
             child: Padding(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    ///***If you have exported images you must have to copy those images in assets/images directory.
                     Image(
                       image: NetworkImage(
                           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoSL4WHG5Ypv4e4W58d5Gt4PnBEM_kZQDDhAKjZAOYLBy6V1karPn2SMil6DFkjUUeX7M&usqp=CAU"),
-                      height: 100,
-                      width: 100,
+                      height: 90,
+                      width: 90,
                       fit: BoxFit.cover,
                     ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Login",
-                          textAlign: TextAlign.start,
-                          overflow: TextOverflow.clip,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 22,
-                            color: Color(0xff000000),
+                    Container(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.60,
+                      child: Center(
+                        child: Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          child: Form(
+                            key: _formkey,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Sign In",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff3a57e8),
+                                    fontSize: 30,
+                                  ),
+                                ),
+                                TextFormField(
+                                  controller: emailController,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: 'Email',
+                                    enabled: true,
+                                    contentPadding: const EdgeInsets.only(
+                                        left: 14.0, bottom: 8.0, top: 8.0),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide:
+                                          new BorderSide(color: Colors.white),
+                                      borderRadius:
+                                          new BorderRadius.circular(10),
+                                    ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          new BorderSide(color: Colors.white),
+                                      borderRadius:
+                                          new BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  validator: (value) {
+                                    if (value!.length == 0) {
+                                      return "Email cannot be empty";
+                                    }
+                                    if (!RegExp(
+                                            "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                        .hasMatch(value)) {
+                                      return ("Please enter a valid email");
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  onSaved: (value) {
+                                    emailController.text = value!;
+                                  },
+                                  keyboardType: TextInputType.emailAddress,
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                TextFormField(
+                                  controller: passwordController,
+                                  obscureText: _isObscure3,
+                                  decoration: InputDecoration(
+                                    suffixIcon: IconButton(
+                                        icon: Icon(_isObscure3
+                                            ? Icons.visibility
+                                            : Icons.visibility_off),
+                                        onPressed: () {
+                                          setState(() {
+                                            _isObscure3 = !_isObscure3;
+                                          });
+                                        }),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: 'Password',
+                                    enabled: true,
+                                    contentPadding: const EdgeInsets.only(
+                                        left: 14.0, bottom: 8.0, top: 15.0),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide:
+                                          new BorderSide(color: Colors.white),
+                                      borderRadius:
+                                          new BorderRadius.circular(10),
+                                    ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          new BorderSide(color: Colors.white),
+                                      borderRadius:
+                                          new BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  validator: (value) {
+                                    RegExp regex = new RegExp(r'^.{6,}$');
+                                    if (value!.isEmpty) {
+                                      return "Password cannot be empty";
+                                    }
+                                    if (!regex.hasMatch(value)) {
+                                      return ("please enter valid password min. 6 character");
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  onSaved: (value) {
+                                    passwordController.text = value!;
+                                  },
+                                  keyboardType: TextInputType.emailAddress,
+                                ),
+                                MaterialButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => RegisterScreen(),
+                                      ),
+                                    );
+                                  },
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.zero,
+                                  ),
+                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
+                                  child: Text(
+                                    "Forgot password?",
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w700,
+                                      fontStyle: FontStyle.normal,
+                                    ),
+                                  ),
+                                  textColor: Color(0xff3f39d8),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.02,
+                                  minWidth: 60,
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                MaterialButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20.0))),
+                                  elevation: 5.0,
+                                  height: 40,
+                                  minWidth: 200,
+                                  onPressed: () {
+                                    setState(() {
+                                      visible = true;
+                                    });
+                                    signIn(emailController.text,
+                                        passwordController.text);
+                                  },
+                                  child: Text(
+                                    "Login",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255)),
+                                  ),
+                                  color: Color(0xff3f39d8),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Visibility(
+                                    maintainSize: true,
+                                    maintainAnimation: true,
+                                    maintainState: true,
+                                    visible: visible,
+                                    child: Container(
+                                        child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                    ))),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 16, horizontal: 0),
-                      child: TextField(
-                        controller: TextEditingController(),
-                        obscureText: false,
-                        textAlign: TextAlign.left,
-                        maxLines: 1,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 14,
-                          color: Color(0xff000000),
-                        ),
-                        decoration: InputDecoration(
-                          disabledBorder: UnderlineInputBorder(
-                            borderRadius: BorderRadius.circular(4.0),
-                            borderSide:
-                                BorderSide(color: Color(0xff000000), width: 1),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderRadius: BorderRadius.circular(4.0),
-                            borderSide:
-                                BorderSide(color: Color(0xff000000), width: 1),
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderRadius: BorderRadius.circular(4.0),
-                            borderSide:
-                                BorderSide(color: Color(0xff000000), width: 1),
-                          ),
-                          hintText: "Username",
-                          hintStyle: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 14,
-                            color: Color(0xff494646),
-                          ),
-                          filled: true,
-                          fillColor: Color(0xffffffff),
-                          isDense: false,
-                          contentPadding: EdgeInsets.all(0),
-                        ),
-                      ),
-                    ),
-                    TextField(
-                      controller: TextEditingController(),
-                      obscureText: false,
-                      textAlign: TextAlign.start,
-                      maxLines: 1,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        color: Color(0xff000000),
-                      ),
-                      decoration: InputDecoration(
-                        disabledBorder: UnderlineInputBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                          borderSide:
-                              BorderSide(color: Color(0xff000000), width: 1),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                          borderSide:
-                              BorderSide(color: Color(0xff000000), width: 1),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                          borderSide:
-                              BorderSide(color: Color(0xff000000), width: 1),
-                        ),
-                        hintText: "Password",
-                        hintStyle: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 14,
-                          color: Color(0xff494646),
-                        ),
-                        filled: true,
-                        fillColor: Color(0xffffffff),
-                        isDense: false,
-                        contentPadding: EdgeInsets.all(0),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                      child: MaterialButton(
-                        onPressed: () {},
-                        color: Color(0xff3a57e8),
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                        padding: EdgeInsets.all(16),
-                        child: Text(
-                          "Login",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            fontStyle: FontStyle.normal,
-                          ),
-                        ),
-                        textColor: Color(0xffffffff),
-                        height: 40,
-                        minWidth: MediaQuery.of(context).size.width,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 6, 0, 0),
+                            padding: EdgeInsets.fromLTRB(0, 13, 0, 0),
                             child: Text(
                               "Don't have an account?",
                               textAlign: TextAlign.start,
@@ -190,7 +264,7 @@ class LoginScreen extends StatelessWidget {
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,
-                                fontSize: 14,
+                                fontSize: 12,
                                 color: Color(0xff000000),
                               ),
                             ),
@@ -198,7 +272,7 @@ class LoginScreen extends StatelessWidget {
                           MaterialButton(
                             onPressed: () {
                               Navigator.push(
-                                context, 
+                                context,
                                 MaterialPageRoute(
                                   builder: (context) => RegisterScreen(),
                                 ),
@@ -209,16 +283,16 @@ class LoginScreen extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.zero,
                             ),
-                            padding: EdgeInsets.all(16),
+                            padding: EdgeInsets.fromLTRB(2, 0, 0, 0),
                             child: Text(
                               "SignUp",
                               style: TextStyle(
-                                fontSize: 13,
+                                fontSize: 12,
                                 fontWeight: FontWeight.w700,
                                 fontStyle: FontStyle.normal,
                               ),
                             ),
-                            textColor: Color(0xff000000),
+                            textColor: Color(0xff3f39d8),
                             height: 5,
                             minWidth: 60,
                           ),
@@ -233,5 +307,29 @@ class LoginScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void signIn(String email, String password) async {
+    if (_formkey.currentState!.validate()) {
+      try {
+        UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DashboardScreen(),
+          ),
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          print('No user found for that email.');
+        } else if (e.code == 'wrong-password') {
+          print('Wrong password provided for that user.');
+        }
+      }
+    }
   }
 }

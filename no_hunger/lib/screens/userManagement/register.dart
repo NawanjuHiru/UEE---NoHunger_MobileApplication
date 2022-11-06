@@ -19,7 +19,7 @@ class RegisterScreen extends StatelessWidget {
               margin: EdgeInsets.all(0),
               padding: EdgeInsets.all(0),
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.2,
+              height: MediaQuery.of(context).size.height * 0.25,
               decoration: BoxDecoration(
                 color: Color(0xff3a57e8),
                 shape: BoxShape.rectangle,
@@ -44,7 +44,7 @@ class RegisterScreen extends StatelessWidget {
                         fit: BoxFit.cover),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    padding: EdgeInsets.fromLTRB(0, 6, 0, 0),
                     child: Text(
                       "Register",
                       textAlign: TextAlign.start,
@@ -61,7 +61,7 @@ class RegisterScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(16, 30, 16, 16),
+              padding: EdgeInsets.fromLTRB(16, 50, 16, 16),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -275,14 +275,14 @@ class RegisterScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                    padding: EdgeInsets.fromLTRB(0, 60, 0, 16),
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
@@ -301,19 +301,17 @@ class RegisterScreen extends StatelessWidget {
                   MaterialButton(
                     onPressed: () {
                       Navigator.push(
-                        context, 
+                        context,
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => LoginPage(),
                         ),
                       );
                     },
-                    color: Color(0xffffffff),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.zero,
-                      side: BorderSide(color: Color(0xffffffff), width: 1),
                     ),
-                    padding: EdgeInsets.all(16),
+                    padding: EdgeInsets.fromLTRB(0, 60, 0, 16),
                     child: Text(
                       "Login",
                       style: TextStyle(

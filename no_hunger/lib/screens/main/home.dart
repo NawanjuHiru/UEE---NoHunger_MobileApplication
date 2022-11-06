@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         fontStyle: FontStyle.normal,
                         fontSize: 30,
-                        color: Color(0xff3a57e8),
+                        color: Color(0xfffba808),
                       ),
                     ),
                   ],
@@ -93,10 +93,10 @@ class HomeScreen extends StatelessWidget {
                   child: MaterialButton(
                     onPressed: () {
                       Navigator.push(
-                        context, 
+                        context,
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
-                          ),
+                          builder: (context) => LoginPage(),
+                        ),
                       );
                     },
                     color: Color(0xff3a57e8),
@@ -124,10 +124,10 @@ class HomeScreen extends StatelessWidget {
                   child: MaterialButton(
                     onPressed: () {
                       Navigator.push(
-                        context, 
+                        context,
                         MaterialPageRoute(
                           builder: (context) => RegisterScreen(),
-                          ),
+                        ),
                       );
                     },
                     color: Color(0xffffffff),
