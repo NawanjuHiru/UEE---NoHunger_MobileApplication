@@ -1,5 +1,6 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:no_hunger/screens/donationManagement/donationList.dart';
 import 'package:no_hunger/screens/placeManagement/placeList.dart';
@@ -15,6 +16,12 @@ class DashboardScreen extends StatelessWidget {
     FlutterVizBottomNavigationBarModel(icon: Icons.credit_card, label: "Post"),
     FlutterVizBottomNavigationBarModel(icon: Icons.account_circle, label: "Account")
   ];
+
+  Future<FirebaseApp> _initializeFirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+
+    return firebaseApp;
+  }
 
   @override
   Widget build(BuildContext context) {
