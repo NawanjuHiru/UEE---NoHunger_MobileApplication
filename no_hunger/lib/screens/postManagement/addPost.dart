@@ -133,60 +133,88 @@ class AddPostScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                child: Text(
-                  "Upload a Photo",
-                  textAlign: TextAlign.start,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 14,
-                    color: Color(0xff000000),
-                  ),
-                ),
-              ),
-              Column(
+              // Padding(
+              //   padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+              //   child: Text(
+              //     "Upload a Photo",
+              //     textAlign: TextAlign.start,
+              //     overflow: TextOverflow.clip,
+              //     style: TextStyle(
+              //       fontWeight: FontWeight.w400,
+              //       fontStyle: FontStyle.normal,
+              //       fontSize: 14,
+              //       color: Color(0xff000000),
+              //     ),
+              //   ),
+              // ),
+              // Column(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   mainAxisSize: MainAxisSize.max,
+              //   children: [
+              //     Align(
+              //       alignment: Alignment.center,
+              //       child: Padding(
+              //         padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+              //         child: Stack(
+              //           alignment: Alignment.bottomRight,
+              //           children: [
+              //             ///***If you have exported images you must have to copy those images in assets/images directory.
+              //             Image(
+              //               image: NetworkImage(
+              //                   "https://picsum.photos/250?image=9"),
+              //               height: 100,
+              //               width: 130,
+              //               fit: BoxFit.cover,
+              //             ),
+              //             Container(
+              //               margin: EdgeInsets.all(0),
+              //               padding: EdgeInsets.all(0),
+              //               width: 40,
+              //               height: 40,
+              //               decoration: BoxDecoration(
+              //                 color: Color(0xff3a57e8),
+              //                 shape: BoxShape.rectangle,
+              //                 borderRadius: BorderRadius.zero,
+              //                 border: Border.all(
+              //                     color: Color(0x4d9e9e9e), width: 1),
+              //               ),
+              //               child: Icon(
+              //                 Icons.add,
+              //                 color: Color(0xffffffff),
+              //                 size: 24,
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                      child: Stack(
-                        alignment: Alignment.bottomRight,
-                        children: [
-                          ///***If you have exported images you must have to copy those images in assets/images directory.
-                          Image(
-                            image: NetworkImage(
-                                "https://picsum.photos/250?image=9"),
-                            height: 100,
-                            width: 130,
-                            fit: BoxFit.cover,
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(0),
-                            padding: EdgeInsets.all(0),
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: Color(0xff3a57e8),
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.zero,
-                              border: Border.all(
-                                  color: Color(0x4d9e9e9e), width: 1),
-                            ),
-                            child: Icon(
-                              Icons.add,
-                              color: Color(0xffffffff),
-                              size: 24,
-                            ),
-                          ),
-                        ],
-                      ),
+                  Text(
+                    "Date",
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.clip,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14,
+                      color: Color(0xff000000),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: CalendarDatePicker(
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(DateTime.now().year),
+                      lastDate: DateTime(2050),
+                      onDateChanged: (date) {},
                     ),
                   ),
                 ],
