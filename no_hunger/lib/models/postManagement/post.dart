@@ -5,7 +5,7 @@ class Post {
   String description;
 
   Post(
-      {required this.id,
+      { required this.id,
       required this.title,
       required this.date,
       required this.description});
