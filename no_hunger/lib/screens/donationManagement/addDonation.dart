@@ -411,7 +411,7 @@ class _AddDonationScreen extends State<AddDonationScreen> {
                   alignment: Alignment.center,
                   child: MaterialButton(
                     onPressed: () async {
-                      print("On press");
+                      //print("On press");
                       // if (_formKey.currentState!.validate()) {
                       //   print("validated");
                         var response = await donationService.addDonation(
