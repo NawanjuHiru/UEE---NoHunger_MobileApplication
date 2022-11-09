@@ -14,6 +14,8 @@ class AddPostScreen extends StatefulWidget {
   }
 }
 
+
+
 class _AddPostScreen extends State<AddPostScreen> {
   final title = TextEditingController();
   final date = TextEditingController();
@@ -36,6 +38,7 @@ class _AddPostScreen extends State<AddPostScreen> {
     FlutterVizBottomNavigationBarModel(
         icon: Icons.account_circle, label: "Account")
   ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -81,13 +84,13 @@ class _AddPostScreen extends State<AddPostScreen> {
           );
         }).toList(),
         backgroundColor: Color(0xffffffff),
-        currentIndex: 3,
+        currentIndex: 0,
         elevation: 8,
         iconSize: 24,
         selectedItemColor: Color(0xff3a57e8),
         unselectedItemColor: Color(0xff9e9e9e),
-        selectedFontSize: 14,
-        unselectedFontSize: 14,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
         showSelectedLabels: true,
         showUnselectedLabels: true,
         onTap: (value) {},
@@ -337,7 +340,7 @@ class _AddPostScreen extends State<AddPostScreen> {
                   controller: description,
                   obscureText: false,
                   textAlign: TextAlign.start,
-                  maxLines: 1,
+                  maxLines: 4,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,

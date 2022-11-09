@@ -1,12 +1,16 @@
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
-
 import 'package:flutter/material.dart';
 import 'package:no_hunger/screens/dashboard/dashboard.dart';
 import 'package:no_hunger/screens/postManagement/addPost.dart';
 import 'package:no_hunger/screens/postManagement/viewPost.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../models/postManagement/post.dart';
+import '../../services/postManagement/postService.dart';
 
 class PostListScreen extends StatelessWidget {
+
+  final Stream<QuerySnapshot> collectionReference = postService.readPosts();
+
   List<FlutterVizBottomNavigationBarModel> flutterVizBottomNavigationBarItems =
       [
     FlutterVizBottomNavigationBarModel(icon: Icons.home, label: "Home"),
@@ -30,7 +34,7 @@ class PostListScreen extends StatelessWidget {
           borderRadius: BorderRadius.zero,
         ),
         title: Text(
-          "Post",
+          "Posts",
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontStyle: FontStyle.normal,
@@ -73,6 +77,9 @@ class PostListScreen extends StatelessWidget {
         onTap: (value) {},
       ),
       body: Padding(
+
+
+
         padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
         child: SingleChildScrollView(
           child: Column(

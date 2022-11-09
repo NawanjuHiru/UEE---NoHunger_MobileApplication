@@ -14,8 +14,7 @@ class postService{
   }) async {
 
     Response response = Response(code: null, message: message);
-    DocumentReference documentReferencer =
-    _Collection.doc();
+    DocumentReference documentReferencer = _Collection.doc();
 
     Map<String, dynamic> data = <String, dynamic>{
       "title": title,
@@ -35,5 +34,39 @@ class postService{
     });
 
     return response;
+  }
+
+  static Stream<QuerySnapshot> readPosts(){
+    CollectionReference notesItemCollection = _Collection;
+
+    return notesItemCollection.snapshots();
+  }
+
+  static Future<Response> deletePost({
+      required String docId,
+  }) async {
+      Response response = Response(code: null, message: message);
+      DocumentReference documentReferencer = _Collection.doc(docId);
+
+      await documentReferencer
+        .delete()
+        .whenComplete((){
+        response.code = 200;
+        response.message = "Sucessfully Deleted Employee";
+      })
+        .catchError((e) {
+        response.code = 500;
+        response.message = e;
+      });
+
+      return response;
+    }
+
+
+  static Future<void> deletePosts({
+    required String docId,
+  }) async{
+    DocumentReference documentReference = _Collection.doc("1").collection('posts').doc(docId);
+    await documentReference.delete().whenComplete(() => print("Note item deleted from the database")).catchError((e) => print(e));
   }
 }

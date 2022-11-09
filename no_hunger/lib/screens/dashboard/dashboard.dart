@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:no_hunger/screens/donationManagement/donationList.dart';
 import 'package:no_hunger/screens/placeManagement/placeList.dart';
 import 'package:no_hunger/screens/postManagement/postList.dart';
+import 'package:no_hunger/screens/postManagement/postListNew.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -369,7 +370,7 @@ class DashboardScreen extends StatelessWidget {
                              Navigator.push(
                               context, 
                               MaterialPageRoute(
-                                builder: (context) => PostListScreen(),
+                                builder: (context) => PostList(),
                                 ),
                             );
                           },
