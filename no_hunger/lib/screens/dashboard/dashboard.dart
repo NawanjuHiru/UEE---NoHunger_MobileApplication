@@ -8,7 +8,12 @@ import 'package:no_hunger/screens/postManagement/postList.dart';
 import 'package:no_hunger/screens/postManagement/postListNew.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
   List<FlutterVizBottomNavigationBarModel> flutterVizBottomNavigationBarItems =
   [
     FlutterVizBottomNavigationBarModel(icon: Icons.home, label: "Home"),
@@ -224,7 +229,7 @@ class DashboardScreen extends StatelessWidget {
                         child: MaterialButton(
                           onPressed: () {
                              Navigator.push(
-                              context, 
+                              context,
                               MaterialPageRoute(
                                 builder: (context) => DonationListScreen(),
                                 ),
@@ -296,7 +301,7 @@ class DashboardScreen extends StatelessWidget {
                         child: MaterialButton(
                           onPressed: () {
                              Navigator.push(
-                              context, 
+                              context,
                               MaterialPageRoute(
                                 builder: (context) => PlaceListScreen(),
                                 ),
@@ -368,7 +373,7 @@ class DashboardScreen extends StatelessWidget {
                         child: MaterialButton(
                           onPressed: () {
                              Navigator.push(
-                              context, 
+                              context,
                               MaterialPageRoute(
                                 builder: (context) => PostList(),
                                 ),
@@ -426,5 +431,13 @@ class DashboardScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+  @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp().whenComplete(() {
+      print("completed");
+      setState(() {});
+    });
   }
 }

@@ -63,10 +63,40 @@ class postService{
     }
 
 
-  static Future<void> deletePosts({
+  // static Future<void> deletePosts({
+  //   required String docId,
+  // }) async{
+  //   DocumentReference documentReference = _Collection.doc("1").collection('posts').doc(docId);
+  //   await documentReference.delete().whenComplete(() => print("Note item deleted from the database")).catchError((e) => print(e));
+  // }
+
+  static Future<Response> updatePost({
     required String docId,
-  }) async{
-    DocumentReference documentReference = _Collection.doc("1").collection('posts').doc(docId);
-    await documentReference.delete().whenComplete(() => print("Note item deleted from the database")).catchError((e) => print(e));
+    required String title,
+    required String date,
+    required String description,
+  }) async {
+    Response response = Response(code: null, message: message);
+    DocumentReference documentReferencer =
+    _Collection.doc(docId);
+
+    Map<String, dynamic> data = <String, dynamic>{
+      "title": title,
+      "date": date,
+      "description" : description
+    };
+
+    await documentReferencer
+        .update(data)
+        .whenComplete(() {
+      response.code = 200;
+      response.message = "Sucessfully updated Post";
+    })
+        .catchError((e) {
+      response.code = 500;
+      response.message = e;
+    });
+
+    return response;
   }
 }

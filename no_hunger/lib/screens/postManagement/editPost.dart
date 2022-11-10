@@ -1,36 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:no_hunger/screens/postManagement/postList.dart';
+
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
-import 'package:firebase_core/firebase_core.dart';
-import '../../services/postManagement/postService.dart';
+import 'package:no_hunger/services/postManagement/postService.dart';
 import 'package:intl/intl.dart';
 
-class AddPostScreen extends StatefulWidget {
+class EditPost extends StatefulWidget {
+  final String post_id, post_title, post_date, post_description;
+
+  const EditPost({
+    Key? key,
+    required this.post_id,
+    required this.post_title,
+    required this.post_date,
+    required this.post_description,
+  }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return _AddPostScreen();
-  }
+  State<EditPost> createState() => _EditPostState();
 }
 
+class _EditPostState extends State<EditPost> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
 
-
-class _AddPostScreen extends State<AddPostScreen> {
-  final title = TextEditingController();
-  final date = TextEditingController();
-  final description = TextEditingController();
-
-  Future<FirebaseApp> _initializeFirebase() async {
-    FirebaseApp firebaseApp = await Firebase.initializeApp();
-
-    return firebaseApp;
+  @override
+  void initState() {
+    super.initState();
+    _titleController.value =
+        TextEditingValue(text: widget.post_title.toString());
+    _dateController.value = TextEditingValue(text: widget.post_date.toString());
+    _descriptionController.value =
+        TextEditingValue(text: widget.post_description.toString());
   }
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   List<FlutterVizBottomNavigationBarModel> flutterVizBottomNavigationBarItems =
-  [
+      [
     FlutterVizBottomNavigationBarModel(icon: Icons.home, label: "Home"),
     FlutterVizBottomNavigationBarModel(icon: Icons.article, label: "Donation"),
     FlutterVizBottomNavigationBarModel(icon: Icons.location_on, label: "Place"),
@@ -38,7 +44,6 @@ class _AddPostScreen extends State<AddPostScreen> {
     FlutterVizBottomNavigationBarModel(
         icon: Icons.account_circle, label: "Account")
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +109,7 @@ class _AddPostScreen extends State<AddPostScreen> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Text(
-                "Add New Post",
+                "Edit Post",
                 textAlign: TextAlign.start,
                 overflow: TextOverflow.clip,
                 style: TextStyle(
@@ -117,7 +122,7 @@ class _AddPostScreen extends State<AddPostScreen> {
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                 child: TextField(
-                  controller: title,
+                  controller: _titleController,
                   obscureText: false,
                   textAlign: TextAlign.start,
                   maxLines: 1,
@@ -138,17 +143,17 @@ class _AddPostScreen extends State<AddPostScreen> {
                     disabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(22.0),
                       borderSide:
-                      BorderSide(color: Color(0xff000000), width: 1),
+                          BorderSide(color: Color(0xff000000), width: 1),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(22.0),
                       borderSide:
-                      BorderSide(color: Color(0xff000000), width: 1),
+                          BorderSide(color: Color(0xff000000), width: 1),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(22.0),
                       borderSide:
-                      BorderSide(color: Color(0xff000000), width: 1),
+                          BorderSide(color: Color(0xff000000), width: 1),
                     ),
                     hintText: "Title",
                     hintStyle: TextStyle(
@@ -161,11 +166,10 @@ class _AddPostScreen extends State<AddPostScreen> {
                     fillColor: Color(0xffffffff),
                     isDense: false,
                     contentPadding:
-                    EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                        EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   ),
                 ),
               ),
-
 
               // Padding(
               //   padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
@@ -258,83 +262,74 @@ class _AddPostScreen extends State<AddPostScreen> {
               //   ],
               // ),
 
-
-            Container(
+              Container(
                 padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                 height: MediaQuery.of(context).size.width / 3,
                 child: Center(
                     child: TextField(
-                      controller: date,
-                      //editing controller of this TextField
-                      decoration: InputDecoration(
-                            disabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(22.0),
-                            borderSide:
-                            BorderSide(color: Color(0xff000000), width: 1),
-                            ),
+                  controller: _dateController,
+                  //editing controller of this TextField
+                  decoration: InputDecoration(
+                    suffixIcon: Icon(Icons.calendar_today),
+                    disabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(22.0),
+                      borderSide:
+                          BorderSide(color: Color(0xff000000), width: 1),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(22.0),
+                      borderSide:
+                          BorderSide(color: Color(0xff000000), width: 1),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(22.0),
+                      borderSide:
+                          BorderSide(color: Color(0xff000000), width: 1),
+                    ),
+                    hintText: "Select Date",
+                    hintStyle: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14,
+                      color: Color(0xff000000),
+                    ),
+                    filled: true,
+                    fillColor: Color(0xffffffff),
+                    isDense: false,
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  ),
 
-                            focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(22.0),
-                            borderSide:
-                            BorderSide(color: Color(0xff000000), width: 1),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(22.0),
-                            borderSide:
-                            BorderSide(color: Color(0xff000000), width: 1),
-                            ),
+                  readOnly: true,
+                  //set it true, so that user will not able to edit text
+                  onTap: () async {
+                    DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1950),
+                        //DateTime.now() - not to allow to choose before today.
+                        lastDate: DateTime(2100));
 
-
-                            hintText: "Select Date",
-                            hintStyle: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.normal,
-                              fontSize: 14,
-                              color: Color(0xff000000),
-                            ),
-                            filled: true,
-                            fillColor: Color(0xffffffff),
-                            isDense: false,
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                            icon: Icon(Icons.calendar_today), //icon of text field),
-
-                          ),
-
-
-                      readOnly: true,
-                      //set it true, so that user will not able to edit text
-                      onTap: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(1950),
-                            //DateTime.now() - not to allow to choose before today.
-                            lastDate: DateTime(2100));
-
-                        if (pickedDate != null) {
-                          print(
-                              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                          String formattedDate =
+                    if (pickedDate != null) {
+                      print(
+                          pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                      String formattedDate =
                           DateFormat('yyyy-MM-dd').format(pickedDate);
-                          print(
-                              formattedDate); //formatted date output using intl package =>  2021-03-16
-                          setState(() {
-                            date.text =
-                                formattedDate; //set output date to TextField value.
-                          });
-                        } else {}
-                      },
-                    )),
-
-            ),
-
-
+                      print(
+                          formattedDate); //formatted date output using intl package =>  2021-03-16
+                      setState(() {
+                        _dateController.text =
+                            formattedDate; //set output date to TextField value.
+                      });
+                    } else {}
+                  },
+                )),
+              ),
 
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                 child: TextField(
-                  controller: description,
+                  controller: _descriptionController,
                   obscureText: false,
                   textAlign: TextAlign.start,
                   maxLines: 4,
@@ -348,17 +343,17 @@ class _AddPostScreen extends State<AddPostScreen> {
                     disabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(22.0),
                       borderSide:
-                      BorderSide(color: Color(0xff000000), width: 1),
+                          BorderSide(color: Color(0xff000000), width: 1),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(22.0),
                       borderSide:
-                      BorderSide(color: Color(0xff000000), width: 1),
+                          BorderSide(color: Color(0xff000000), width: 1),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(22.0),
                       borderSide:
-                      BorderSide(color: Color(0xff000000), width: 1),
+                          BorderSide(color: Color(0xff000000), width: 1),
                     ),
                     hintText: "Description",
                     hintStyle: TextStyle(
@@ -371,7 +366,7 @@ class _AddPostScreen extends State<AddPostScreen> {
                     fillColor: Color(0xffffffff),
                     isDense: false,
                     contentPadding:
-                    EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                        EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   ),
                 ),
               ),
@@ -381,10 +376,12 @@ class _AddPostScreen extends State<AddPostScreen> {
                   alignment: Alignment.center,
                   child: MaterialButton(
                     onPressed: () async {
-                      var response = await postService.addPost(
-                          title: title.text,
-                          date: date.text,
-                          description: description.text);
+                      var response = await postService.updatePost(
+                        docId: widget.post_id,
+                        title: _titleController.text,
+                        date: _dateController.text,
+                        description: _descriptionController.text,
+                      );
                       if (response.code != 200) {
                         showDialog(
                             context: context,
@@ -417,8 +414,6 @@ class _AddPostScreen extends State<AddPostScreen> {
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                         fontStyle: FontStyle.normal,
-
-
                       ),
                     ),
                     textColor: Color(0xffffffff),
@@ -433,16 +428,4 @@ class _AddPostScreen extends State<AddPostScreen> {
       ),
     );
   }
-
-  @override
-  void initState() {
-    super.initState();
-    Firebase.initializeApp().whenComplete(() {
-      print("completed");
-      setState(() {});
-    });
-  }
 }
-
-
-

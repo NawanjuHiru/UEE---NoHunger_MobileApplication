@@ -20,11 +20,11 @@ class _AddDonationScreen extends State<AddDonationScreen> {
   final category = TextEditingController();
   final description = TextEditingController();
 
-  Future<FirebaseApp> _initializeFirebase() async {
-    FirebaseApp firebaseApp = await Firebase.initializeApp();
-
-    return firebaseApp;
-  }
+  // Future<FirebaseApp> _initializeFirebase() async {
+  //   FirebaseApp firebaseApp = await Firebase.initializeApp();
+  //
+  //   return firebaseApp;
+  // }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
