@@ -1,9 +1,29 @@
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:no_hunger/screens/userManagement/login.dart';
 
-class RegisterScreen extends StatelessWidget {
+class Register extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return RegisterScreen();
+  }
+}
+
+class RegisterScreen extends State<Register> {
+  final name = TextEditingController();
+  final email = TextEditingController();
+  final username = TextEditingController();
+  final password = TextEditingController();
+
+  Future<FirebaseApp> _initializeFirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+
+    return firebaseApp;
+  }
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +89,7 @@ class RegisterScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     TextField(
-                      controller: TextEditingController(),
+                      controller: name,
                       obscureText: false,
                       textAlign: TextAlign.start,
                       maxLines: 1,
@@ -113,7 +133,7 @@ class RegisterScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                       child: TextField(
-                        controller: TextEditingController(),
+                        controller: email,
                         obscureText: false,
                         textAlign: TextAlign.start,
                         maxLines: 1,
@@ -158,7 +178,7 @@ class RegisterScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                       child: TextField(
-                        controller: TextEditingController(),
+                        controller: username,
                         obscureText: false,
                         textAlign: TextAlign.start,
                         maxLines: 1,
@@ -203,7 +223,7 @@ class RegisterScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                       child: TextField(
-                        controller: TextEditingController(),
+                        controller: password,
                         obscureText: true,
                         textAlign: TextAlign.start,
                         maxLines: 1,

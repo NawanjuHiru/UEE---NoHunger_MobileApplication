@@ -213,7 +213,7 @@ class _ForgotpassState extends State<Forgotpass> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => RegisterScreen(),
+                                  builder: (context) => Register(),
                                 ),
                               );
                             },
