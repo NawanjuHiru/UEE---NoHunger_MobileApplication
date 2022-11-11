@@ -32,12 +32,12 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[900],
+      backgroundColor:Color(0xff3a57e8),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Container(
-              color: Colors.blue[900],
+              color: Color(0xff3a57e8),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: SingleChildScrollView(
@@ -50,7 +50,7 @@ class _RegisterState extends State<Register> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 80,
+                          height: 130,
                         ),
                         Text(
                           "Register Now",
@@ -185,7 +185,7 @@ class _RegisterState extends State<Register> {
                           onChanged: (value) {},
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 60,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -239,14 +239,7 @@ class _RegisterState extends State<Register> {
                             ),
                           ],
                         ),
-                        Text(
-                          "WEBFUN",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                            color: Colors.yellowAccent[400],
-                          ),
-                        ),
+                        
                       ],
                     ),
                   ),
