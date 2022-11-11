@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:no_hunger/screens/postManagement/postList.dart';
+import 'package:no_hunger/screens/postManagement/postListNew.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '../../services/postManagement/postService.dart';
@@ -31,7 +31,7 @@ class _AddPostScreen extends State<AddPostScreen> {
 
   List<FlutterVizBottomNavigationBarModel> flutterVizBottomNavigationBarItems =
   [
-    FlutterVizBottomNavigationBarModel(icon: Icons.home, label: "Home"),
+    FlutterVizBottomNavigationBarModel(icon: Icons.home, label: "Home" ),
     FlutterVizBottomNavigationBarModel(icon: Icons.article, label: "Donation"),
     FlutterVizBottomNavigationBarModel(icon: Icons.location_on, label: "Place"),
     FlutterVizBottomNavigationBarModel(icon: Icons.credit_card, label: "Post"),
@@ -267,6 +267,7 @@ class _AddPostScreen extends State<AddPostScreen> {
                       controller: date,
                       //editing controller of this TextField
                       decoration: InputDecoration(
+                        suffixIcon: Icon(Icons.calendar_today),
                             disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(22.0),
                             borderSide:
@@ -297,7 +298,7 @@ class _AddPostScreen extends State<AddPostScreen> {
                             isDense: false,
                             contentPadding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                            icon: Icon(Icons.calendar_today), //icon of text field),
+
 
                           ),
 
@@ -337,7 +338,7 @@ class _AddPostScreen extends State<AddPostScreen> {
                   controller: description,
                   obscureText: false,
                   textAlign: TextAlign.start,
-                  maxLines: 4,
+                  maxLines: 6,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
@@ -402,7 +403,13 @@ class _AddPostScreen extends State<AddPostScreen> {
                               );
                             });
                       }
-                      // };
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PostList(),
+                        ),
+                      );
                     },
                     color: Color(0xff3a57e8),
                     elevation: 0,

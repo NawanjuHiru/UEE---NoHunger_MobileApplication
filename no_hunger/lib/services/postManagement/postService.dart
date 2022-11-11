@@ -26,7 +26,7 @@ class postService{
         .set(data)
         .whenComplete(() {
       response.code = 200;
-      response.message = "Sucessfully added the post";
+      response.message = "Successfully Added the Post!!";
     })
         .catchError((e) {
       response.code = 500;
@@ -52,7 +52,7 @@ class postService{
         .delete()
         .whenComplete((){
         response.code = 200;
-        response.message = "Sucessfully Deleted Employee";
+        response.message = "Successfully Deleted Post!!";
       })
         .catchError((e) {
         response.code = 500;
@@ -90,7 +90,7 @@ class postService{
         .update(data)
         .whenComplete(() {
       response.code = 200;
-      response.message = "Sucessfully updated Post";
+      response.message = "Successfully updated the Post";
     })
         .catchError((e) {
       response.code = 500;

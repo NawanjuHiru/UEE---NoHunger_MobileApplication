@@ -286,6 +286,8 @@ class _EditPostState extends State<EditPost> {
                       borderSide:
                           BorderSide(color: Color(0xff000000), width: 1),
                     ),
+
+
                     hintText: "Select Date",
                     hintStyle: TextStyle(
                       fontWeight: FontWeight.w400,
