@@ -1,27 +1,34 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:no_hunger/screens/dashboard/dashboard.dart';
+import 'package:no_hunger/screens/main/register.dart';
 import 'package:no_hunger/screens/main/splash.dart';
+import 'package:no_hunger/screens/nav bar/nav.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp();
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-  Future<FirebaseApp> _initializeFirebase() async {
-    FirebaseApp firebaseApp = await Firebase.initializeApp();
-
-    return firebaseApp;
-  }
-
-  // This widget is the root of your application.
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DashboardScreen(),
+      theme: ThemeData(
+        primaryColor: Colors.blue[900],
+      ),
+      home: SplashScreen(),
     );
   }
+
+  
 }
+
+
+

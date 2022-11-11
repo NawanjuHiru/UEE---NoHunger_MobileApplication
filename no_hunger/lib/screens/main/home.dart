@@ -1,8 +1,8 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:flutter/material.dart';
-import 'package:no_hunger/screens/userManagement/login.dart';
-import 'package:no_hunger/screens/userManagement/register.dart';
+import 'package:no_hunger/screens/main/login.dart';
+import 'package:no_hunger/screens/main/register.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -95,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                       Navigator.push(
                         context, 
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => LoginPage(),
                           ),
                       );
                     },
@@ -126,7 +126,7 @@ class HomeScreen extends StatelessWidget {
                       Navigator.push(
                         context, 
                         MaterialPageRoute(
-                          builder: (context) => RegisterScreen(),
+                          builder: (context) => Register(),
                           ),
                       );
                     },

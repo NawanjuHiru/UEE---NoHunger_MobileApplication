@@ -43,12 +43,12 @@ class ReviewPostScreen extends StatelessWidget {
           color: Color(0xffffffff),
           iconSize: 24, 
           onPressed: () {
-            Navigator.push(
-              context, 
-              MaterialPageRoute(
-                builder: (context) => ViewPostScreen(),
-              ),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => ViewPostScreen(),
+            //   ),
+            // );
           },
         ),
       ),

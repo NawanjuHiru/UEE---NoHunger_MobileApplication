@@ -1,12 +1,36 @@
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
-
 import 'package:flutter/material.dart';
 import 'package:no_hunger/screens/postManagement/postList.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
+import 'package:firebase_core/firebase_core.dart';
+import '../../services/postManagement/postService.dart';
+import 'package:intl/intl.dart';
 
-class AddPostScreen extends StatelessWidget {
+class AddPostScreen extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _AddPostScreen();
+  }
+}
+
+
+
+class _AddPostScreen extends State<AddPostScreen> {
+  final title = TextEditingController();
+  final date = TextEditingController();
+  final description = TextEditingController();
+
+  Future<FirebaseApp> _initializeFirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+
+    return firebaseApp;
+  }
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   List<FlutterVizBottomNavigationBarModel> flutterVizBottomNavigationBarItems =
-      [
+  [
     FlutterVizBottomNavigationBarModel(icon: Icons.home, label: "Home"),
     FlutterVizBottomNavigationBarModel(icon: Icons.article, label: "Donation"),
     FlutterVizBottomNavigationBarModel(icon: Icons.location_on, label: "Place"),
@@ -14,6 +38,7 @@ class AddPostScreen extends StatelessWidget {
     FlutterVizBottomNavigationBarModel(
         icon: Icons.account_circle, label: "Account")
   ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +64,14 @@ class AddPostScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           color: Color(0xffffffff),
-          iconSize: 24, 
+          iconSize: 24,
           onPressed: () {
-            Navigator.push(
-              context, 
-              MaterialPageRoute(
-                builder: (context) => PostListScreen(),
-              ),
-            );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => PostListScreen(),
+            //   ),
+            // );
           },
         ),
       ),
@@ -59,13 +84,13 @@ class AddPostScreen extends StatelessWidget {
           );
         }).toList(),
         backgroundColor: Color(0xffffffff),
-        currentIndex: 3,
+        currentIndex: 0,
         elevation: 8,
         iconSize: 24,
         selectedItemColor: Color(0xff3a57e8),
         unselectedItemColor: Color(0xff9e9e9e),
-        selectedFontSize: 14,
-        unselectedFontSize: 14,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
         showSelectedLabels: true,
         showUnselectedLabels: true,
         onTap: (value) {},
@@ -92,7 +117,7 @@ class AddPostScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                 child: TextField(
-                  controller: TextEditingController(),
+                  controller: title,
                   obscureText: false,
                   textAlign: TextAlign.start,
                   maxLines: 1,
@@ -102,21 +127,22 @@ class AddPostScreen extends StatelessWidget {
                     fontSize: 14,
                     color: Color(0xff000000),
                   ),
+
                   decoration: InputDecoration(
                     disabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(22.0),
                       borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
+                      BorderSide(color: Color(0xff000000), width: 1),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(22.0),
                       borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
+                      BorderSide(color: Color(0xff000000), width: 1),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(22.0),
                       borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
+                      BorderSide(color: Color(0xff000000), width: 1),
                     ),
                     hintText: "Title",
                     hintStyle: TextStyle(
@@ -129,75 +155,90 @@ class AddPostScreen extends StatelessWidget {
                     fillColor: Color(0xffffffff),
                     isDense: false,
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   ),
                 ),
               ),
-              Padding(
+              
+            Container(
                 padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                child: Text(
-                  "Upload a Photo",
-                  textAlign: TextAlign.start,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 14,
-                    color: Color(0xff000000),
-                  ),
-                ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                      child: Stack(
-                        alignment: Alignment.bottomRight,
-                        children: [
-                          ///***If you have exported images you must have to copy those images in assets/images directory.
-                          Image(
-                            image: NetworkImage(
-                                "https://picsum.photos/250?image=9"),
-                            height: 100,
-                            width: 130,
-                            fit: BoxFit.cover,
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(0),
-                            padding: EdgeInsets.all(0),
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: Color(0xff3a57e8),
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.zero,
-                              border: Border.all(
-                                  color: Color(0x4d9e9e9e), width: 1),
+                height: MediaQuery.of(context).size.width / 3,
+                child: Center(
+                    child: TextField(
+                      controller: date,
+                      //editing controller of this TextField
+                      decoration: InputDecoration(
+                            disabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(22.0),
+                            borderSide:
+                            BorderSide(color: Color(0xff000000), width: 1),
                             ),
-                            child: Icon(
-                              Icons.add,
-                              color: Color(0xffffffff),
-                              size: 24,
+
+                            focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(22.0),
+                            borderSide:
+                            BorderSide(color: Color(0xff000000), width: 1),
                             ),
+                            enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(22.0),
+                            borderSide:
+                            BorderSide(color: Color(0xff000000), width: 1),
+                            ),
+
+
+                            hintText: "Select Date",
+                            hintStyle: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                              fontSize: 14,
+                              color: Color(0xff000000),
+                            ),
+                            filled: true,
+                            fillColor: Color(0xffffffff),
+                            isDense: false,
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                            icon: Icon(Icons.calendar_today), //icon of text field),
+
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+
+
+                      readOnly: true,
+                      //set it true, so that user will not able to edit text
+                      onTap: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1950),
+                            //DateTime.now() - not to allow to choose before today.
+                            lastDate: DateTime(2100));
+
+                        if (pickedDate != null) {
+                          print(
+                              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                          String formattedDate =
+                          DateFormat('yyyy-MM-dd').format(pickedDate);
+                          print(
+                              formattedDate); //formatted date output using intl package =>  2021-03-16
+                          setState(() {
+                            date.text =
+                                formattedDate; //set output date to TextField value.
+                          });
+                        } else {}
+                      },
+                    )),
+
+            ),
+
+
+
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                 child: TextField(
-                  controller: TextEditingController(),
+                  controller: description,
                   obscureText: false,
                   textAlign: TextAlign.start,
-                  maxLines: 1,
+                  maxLines: 4,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
@@ -208,17 +249,17 @@ class AddPostScreen extends StatelessWidget {
                     disabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(22.0),
                       borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
+                      BorderSide(color: Color(0xff000000), width: 1),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(22.0),
                       borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
+                      BorderSide(color: Color(0xff000000), width: 1),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(22.0),
                       borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
+                      BorderSide(color: Color(0xff000000), width: 1),
                     ),
                     hintText: "Description",
                     hintStyle: TextStyle(
@@ -231,7 +272,7 @@ class AddPostScreen extends StatelessWidget {
                     fillColor: Color(0xffffffff),
                     isDense: false,
                     contentPadding:
-                        EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                    EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                   ),
                 ),
               ),
@@ -240,7 +281,30 @@ class AddPostScreen extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      var response = await postService.addPost(
+                          title: title.text,
+                          date: date.text,
+                          description: description.text);
+                      if (response.code != 200) {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                content: Text(response.message.toString()),
+                              );
+                            });
+                      } else {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                content: Text(response.message.toString()),
+                              );
+                            });
+                      }
+                      // };
+                    },
                     color: Color(0xff3a57e8),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
@@ -254,6 +318,8 @@ class AddPostScreen extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                         fontStyle: FontStyle.normal,
+
+
                       ),
                     ),
                     textColor: Color(0xffffffff),
@@ -268,4 +334,16 @@ class AddPostScreen extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp().whenComplete(() {
+      print("completed");
+      setState(() {});
+    });
+  }
 }
+
+
+

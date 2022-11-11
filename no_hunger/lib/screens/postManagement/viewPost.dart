@@ -1,11 +1,34 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:flutter/material.dart';
+import 'package:no_hunger/screens/donationManagement/donationList.dart';
+import 'package:no_hunger/screens/postManagement/editPost.dart';
 import 'package:no_hunger/screens/postManagement/postList.dart';
 import 'package:no_hunger/screens/postManagement/reviewPost.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
+import 'package:no_hunger/models/postManagement/post.dart';
+import 'package:no_hunger/services/postManagement/postService.dart';
+import 'postListNew.dart';
 
-class ViewPostScreen extends StatelessWidget {
+class ViewPostScreen extends StatefulWidget {
+  final String post_id;
+  final String post_title;
+  final String post_date;
+  final String post_description;
+
+  const ViewPostScreen({
+    Key? key,
+    required this.post_id,
+    required this.post_title,
+    required this.post_description,
+    required this.post_date,
+  }) : super(key: key);
+
+  @override
+  State<ViewPostScreen> createState() => _ViewPostScreenState();
+}
+
+class _ViewPostScreenState extends State<ViewPostScreen> {
   List<FlutterVizBottomNavigationBarModel> flutterVizBottomNavigationBarItems =
       [
     FlutterVizBottomNavigationBarModel(icon: Icons.home, label: "Home"),
@@ -40,14 +63,13 @@ class ViewPostScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           color: Color(0xffffffff),
-          iconSize: 24, 
+          iconSize: 24,
           onPressed: () {
             Navigator.push(
-              context, 
-              MaterialPageRoute(
-                builder: (context) => PostListScreen(),
-              ),
-            );
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PostList(),
+                ));
           },
         ),
       ),
@@ -90,6 +112,10 @@ class ViewPostScreen extends StatelessWidget {
                   color: Color(0xff000000),
                 ),
               ),
+              Text(widget.post_title),
+              Text(widget.post_description),
+              Text(widget.post_date),
+              Text(widget.post_id),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                 child: TextField(
@@ -247,7 +273,7 @@ class ViewPostScreen extends StatelessWidget {
                     MaterialButton(
                       onPressed: () {
                         Navigator.push(
-                          context, 
+                          context,
                           MaterialPageRoute(
                             builder: (context) => ReviewPostScreen(),
                           ),
@@ -261,7 +287,7 @@ class ViewPostScreen extends StatelessWidget {
                       ),
                       padding: EdgeInsets.all(16),
                       child: Text(
-                        "Update",
+                        "Review",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -270,12 +296,32 @@ class ViewPostScreen extends StatelessWidget {
                       ),
                       textColor: Color(0xffffffff),
                       height: 40,
-                      minWidth: 130,
+                      minWidth: 100,
                     ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          var response = await postService.deletePost(docId: widget.post_id);
+                          if (response.code != 200) {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    content: Text(response.message.toString()),
+                                  );
+                                });
+                          } else {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    content: Text(response.message.toString()),
+                                  );
+                                });
+                          }
+                          // };
+                        },
                         color: Color(0xffec1212),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
@@ -293,7 +339,42 @@ class ViewPostScreen extends StatelessWidget {
                         ),
                         textColor: Color(0xffffffff),
                         height: 40,
-                        minWidth: 130,
+                        minWidth: 100,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: MaterialButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => EditPost(
+                                post_id: widget.post_id,
+                                post_title: widget.post_title,
+                                post_description: widget.post_description,
+                                post_date: widget.post_date,
+                              ),
+                            ),
+                          );
+                        },
+                        color: Color(0xffec1212),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                          side: BorderSide(color: Color(0xffec1212), width: 1),
+                        ),
+                        padding: EdgeInsets.all(16),
+                        child: Text(
+                          "Edit",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            fontStyle: FontStyle.normal,
+                          ),
+                        ),
+                        textColor: Color(0xffffffff),
+                        height: 40,
+                        minWidth: 100,
                       ),
                     ),
                   ],
