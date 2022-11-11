@@ -14,45 +14,14 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  List<FlutterVizBottomNavigationBarModel> flutterVizBottomNavigationBarItems =
-  [
-    FlutterVizBottomNavigationBarModel(icon: Icons.home, label: "Home"),
-    FlutterVizBottomNavigationBarModel(icon: Icons.article, label: "Donation"),
-    FlutterVizBottomNavigationBarModel(icon: Icons.location_on, label: "Place"),
-    FlutterVizBottomNavigationBarModel(icon: Icons.credit_card, label: "Post"),
-    FlutterVizBottomNavigationBarModel(icon: Icons.account_circle, label: "Account")
-  ];
-
-  Future<FirebaseApp> _initializeFirebase() async {
-    FirebaseApp firebaseApp = await Firebase.initializeApp();
-
-    return firebaseApp;
-  }
+  
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffe2e5e7),
-      bottomNavigationBar: BottomNavigationBar(
-        items: flutterVizBottomNavigationBarItems
-            .map((FlutterVizBottomNavigationBarModel item) {
-          return BottomNavigationBarItem(
-            icon: Icon(item.icon),
-            label: item.label,
-          );
-        }).toList(),
-        backgroundColor: Color(0xffffffff),
-        currentIndex: 0,
-        elevation: 8,
-        iconSize: 24,
-        selectedItemColor: Color(0xff3a57e8),
-        unselectedItemColor: Color(0xff9e9e9e),
-        selectedFontSize: 14,
-        unselectedFontSize: 14,
-        showSelectedLabels: true,
-        showUnselectedLabels: false,
-        onTap: (value) {},
-      ),
+      
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

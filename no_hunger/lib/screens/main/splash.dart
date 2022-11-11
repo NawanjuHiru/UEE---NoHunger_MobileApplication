@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:no_hunger/screens/main/home.dart';
+import 'package:no_hunger/screens/main/login.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
