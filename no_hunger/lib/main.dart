@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:no_hunger/screens/dashboard/dashboard.dart';
 import 'package:no_hunger/screens/main/splash.dart';
+import 'package:no_hunger/screens/placeManagement/addplace.dart';
 
 void main() {
   runApp(const MyApp());

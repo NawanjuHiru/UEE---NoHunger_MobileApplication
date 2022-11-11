@@ -3,7 +3,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:no_hunger/screens/donationManagement/donationList.dart';
-import 'package:no_hunger/screens/placeManagement/placeList.dart';
+import 'package:no_hunger/screens/placeManagement/listplace.dart';
 import 'package:no_hunger/screens/postManagement/postList.dart';
 import 'package:no_hunger/screens/postManagement/postListNew.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
@@ -157,7 +157,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           Padding(
                             padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
                             child: Text(
-                              "204,Shivam Apartment,MI 43423",
+                              "Colombo",
                               textAlign: TextAlign.start,
                               overflow: TextOverflow.clip,
                               style: TextStyle(
@@ -303,7 +303,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                              Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => PlaceListScreen(),
+                                builder: (context) => ListPlace(),
                                 ),
                             );
                           },
