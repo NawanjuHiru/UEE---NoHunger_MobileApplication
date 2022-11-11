@@ -154,12 +154,13 @@ class _EditDonation extends State<EditDonation> {
             (route) => false, //if you want to disable back feature set to false
           );
         },
-        child: const Text('View List of Donations'));
+        child: const Text('View List of Donations',
+            style: TextStyle(color: Color(0xff3a57e8))));
 
     final SaveButon = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
-      color: Theme.of(context).primaryColor,
+      color: Color(0xff3a57e8),
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -195,7 +196,7 @@ class _EditDonation extends State<EditDonation> {
         },
         child: Text(
           "Update",
-          style: TextStyle(color: Theme.of(context).primaryColorLight),
+          style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
           textAlign: TextAlign.center,
         ),
       ),
@@ -204,56 +205,56 @@ class _EditDonation extends State<EditDonation> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-      elevation: 4,
-      centerTitle: false,
-      automaticallyImplyLeading: false,
-      backgroundColor: Color(0xff3a57e8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.zero,
-      ),
-      title: Text(
-        "Edit Donation",
-        style: TextStyle(
-          fontWeight: FontWeight.w700,
-          fontStyle: FontStyle.normal,
-          fontSize: 20,
+        elevation: 4,
+        centerTitle: false,
+        automaticallyImplyLeading: false,
+        backgroundColor: Color(0xff3a57e8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.zero,
+        ),
+        title: Text(
+          "Edit Donation",
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontStyle: FontStyle.normal,
+            fontSize: 20,
+            color: Color(0xffffffff),
+          ),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
           color: Color(0xffffffff),
+          iconSize: 24,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ListDonation(),
+              ),
+            );
+          },
         ),
       ),
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back),
-        color: Color(0xffffffff),
-        iconSize: 24,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ListDonation(),
-            ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: flutterVizBottomNavigationBarItems
+            .map((FlutterVizBottomNavigationBarModel item) {
+          return BottomNavigationBarItem(
+            icon: Icon(item.icon),
+            label: item.label,
           );
-        },
+        }).toList(),
+        backgroundColor: Color(0xffffffff),
+        currentIndex: 1,
+        elevation: 8,
+        iconSize: 24,
+        selectedItemColor: Color(0xff3a57e8),
+        unselectedItemColor: Color(0xff9e9e9e),
+        selectedFontSize: 14,
+        unselectedFontSize: 14,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        onTap: (value) {},
       ),
-    ),
-    bottomNavigationBar: BottomNavigationBar(
-      items: flutterVizBottomNavigationBarItems
-          .map((FlutterVizBottomNavigationBarModel item) {
-        return BottomNavigationBarItem(
-          icon: Icon(item.icon),
-          label: item.label,
-        );
-      }).toList(),
-      backgroundColor: Color(0xffffffff),
-      currentIndex: 1,
-      elevation: 8,
-      iconSize: 24,
-      selectedItemColor: Color(0xff3a57e8),
-      unselectedItemColor: Color(0xff9e9e9e),
-      selectedFontSize: 14,
-      unselectedFontSize: 14,
-      showSelectedLabels: true,
-      showUnselectedLabels: true,
-      onTap: (value) {},
-    ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
