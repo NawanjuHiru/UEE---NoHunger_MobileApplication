@@ -45,6 +45,15 @@ class _AddPostScreen extends State<AddPostScreen> {
     return Scaffold(
       backgroundColor: Color(0xffffffff),
       appBar: AppBar(
+        leading: BackButton(onPressed: () {
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (context) => PostList(),
+                                ),
+                              );
+                            }
+        ),
         elevation: 4,
         centerTitle: false,
         automaticallyImplyLeading: false,
@@ -61,19 +70,7 @@ class _AddPostScreen extends State<AddPostScreen> {
             color: Color(0xffffffff),
           ),
         ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          color: Color(0xffffffff),
-          iconSize: 24,
-          onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => PostListScreen(),
-            //   ),
-            // );
-          },
-        ),
+        
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: flutterVizBottomNavigationBarItems

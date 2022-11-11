@@ -1,6 +1,7 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:flutter/material.dart';
+import 'package:no_hunger/screens/dashboard/dashboard.dart';
 import 'package:no_hunger/screens/placeManagement/addplace.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:no_hunger/models/placeManagement/place.dart';
@@ -27,6 +28,15 @@ class _ListPlace extends State<ListPlace> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: BackButton(onPressed: () {
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (context) => DashboardScreen(),
+                                ),
+                              );
+                            }
+        ),
         title: const Text("List of Places"),
         backgroundColor: Theme.of(context).primaryColor,
         actions: <Widget>[

@@ -40,6 +40,15 @@ class _PostList extends State<PostList> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: BackButton(onPressed: () {
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (context) => DashboardScreen(),
+                                ),
+                              );
+                            }
+        ),
         title: const Text("Posts List"),
         backgroundColor: Color(0xff3a57e8),
         actions: <Widget>[

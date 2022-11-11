@@ -1,6 +1,8 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:flutter/material.dart';
+import 'package:no_hunger/screens/dashboard/dashboard.dart';
+import 'package:no_hunger/screens/main/home.dart';
 import 'package:no_hunger/screens/placeManagement/listplace.dart';
 import 'package:no_hunger/widgets/FlutterVizBottomNavigationBarModel.dart';
 import 'package:no_hunger/services/placeManagement/placeService.dart';
@@ -26,7 +28,6 @@ class _AddPlace extends State<AddPlace> {
 
   @override
   Widget build(BuildContext context) {
-
     final nameField = TextFormField(
         controller: _name,
         autofocus: false,
@@ -197,28 +198,32 @@ class _AddPlace extends State<AddPlace> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: BackButton(onPressed: () {
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (context) => ListPlace(),
+                                ),
+                              );
+                            }
+        ),
         title: const Text('Add Place'),
         backgroundColor: Theme.of(context).primaryColor,
       ),
-
-
-      
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-        child: Align(
-          alignment: Alignment.center,
-          child: Text(
-            'Add a Place',
-            style: TextStyle(
-              fontSize: 22,
-
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Add a Place',
+                style: TextStyle(
+                  fontSize: 22,
+                ),
+              ),
             ),
           ),
-        ),
-      ),
-
           Form(
             key: _formKey,
             child: Padding(
