@@ -41,7 +41,7 @@ class _PostList extends State<PostList> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text("Posts List"),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Color(0xff3a57e8),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -70,77 +70,86 @@ class _PostList extends State<PostList> {
               child: ListView(
                 children: snapshot.data!.docs.map((p) {
                   return Card(
+                    color: Color(0xFFE1F5FE),  //0xFFB3E5FC //0xFF90CAF9
                       child: Column(children: [
                     ListTile(
-                      title: Text(p["title"]),
+                      title: Text(p["title"],
+                      style: const TextStyle(fontSize: 18)),
                       subtitle: Container(
                         child: (Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text("Title: " + p['title'],
+                            // Text("Title: " + p['title'],
+                            //     style: const TextStyle(fontSize: 14)),
+                            Text("date: " + p['date'],
+                          //Text("
+                                // date: " + p['date'],
                                 style: const TextStyle(fontSize: 14)),
-                            Text("date " + p['date'],
-                                style: const TextStyle(fontSize: 12)),
+
+
                           ],
                         )),
                       ),
                     ),
+
+
                     ButtonBar(
                       alignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
+                        // TextButton(
+                        //   style: TextButton.styleFrom(
+                        //     padding: const EdgeInsets.all(5.0),
+                        //     primary: const Color.fromARGB(255, 143, 133, 226),
+                        //     textStyle: const TextStyle(fontSize: 20),
+                        //   ),
+                        //   child: const Text('Edit'),
+                        //   onPressed: () {
+                        //     viewPost(
+                        //       post: Post(
+                        //           id: p.id,
+                        //           title: p["title"],
+                        //           date: p["date"],
+                        //           description: p["description"]),
+                        //     );
+                        //   },
+                        // ),
                         TextButton(
                           style: TextButton.styleFrom(
                             padding: const EdgeInsets.all(5.0),
                             primary: const Color.fromARGB(255, 143, 133, 226),
                             textStyle: const TextStyle(fontSize: 20),
                           ),
-                          child: const Text('Edit'),
-                          onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (BuildContext context) => viewPost(
-                            //       post: Post(
-                            //         id: p.id,
-                            //         title: p["title"],
-                            //         date: p["date"],
-                            //         description: p["description"],
-                            //       ),
-                            //     ),
-                            //   ), //if you want to disable back feature set to false
-                            // );
-                            viewPost(
-                              post: Post(
-                                  id: p.id,
-                                  title: p["title"],
-                                  date: p["date"],
-                                  description: p["description"]),
-                            );
-                          },
-                        ),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            padding: const EdgeInsets.all(5.0),
-                            primary: const Color.fromARGB(255, 143, 133, 226),
-                            textStyle: const TextStyle(fontSize: 20),
-                          ),
-                          child: const Text('Delete'),
+                          child: const Text(''),
                           onPressed: () async {
-                            var response =
-                                await postService.deletePost(docId: p.id);
-                            if (response.code != 200) {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      content:
-                                          Text(response.message.toString()),
-                                    );
-                                  });
-                            }
+
                           },
                         ),
+
+                        // Icon(
+                        //
+                        //   Icons.visibility_outlined,
+                        //   color: Colors.blue,
+                        //   size: 30.0,
+                        //   onPressed: (){},
+                        // ),
+
+                              IconButton(
+                              icon: Icon(Icons.visibility_outlined),
+                              onPressed: () {
+                                viewPost(
+                                  post: Post(
+                                      id: p.id,
+                                      title: p["title"],
+                                      date: p["date"],
+                                      description: p["description"]),
+                                );
+                              },
+                              color: Colors.blue,
+                              iconSize: 24,
+                            ),
+
                       ],
+
                     ),
                   ]));
                 }).toList(),
