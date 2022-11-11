@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:no_hunger/models/donationManagement/donation.dart';
 import 'package:no_hunger/services/donationManagement/donationService.dart';
+import 'package:no_hunger/widgets/FlutterVizBottomNavigationBarModel.dart';
 
 import 'listDonation.dart';
 
@@ -26,17 +27,29 @@ class _EditDonation extends State<EditDonation> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  List<FlutterVizBottomNavigationBarModel> flutterVizBottomNavigationBarItems =
+      [
+    FlutterVizBottomNavigationBarModel(icon: Icons.home, label: "Home"),
+    FlutterVizBottomNavigationBarModel(icon: Icons.article, label: "Donation"),
+    FlutterVizBottomNavigationBarModel(icon: Icons.location_on, label: "Place"),
+    FlutterVizBottomNavigationBarModel(icon: Icons.credit_card, label: "Post"),
+    FlutterVizBottomNavigationBarModel(
+        icon: Icons.account_circle, label: "Account")
+  ];
+
   @override
   void initState() {
     // TODO: implement initState
 
     _docid.value = TextEditingValue(text: widget.donation!.did.toString());
     _name.value = TextEditingValue(text: widget.donation!.name.toString());
-    _email.value =
-        TextEditingValue(text: widget.donation!.email.toString());
-    _mobileNumber.value = TextEditingValue(text: widget.donation!.mobileNumber.toString());
-    _location.value = TextEditingValue(text: widget.donation!.location.toString());
-    _category.value = TextEditingValue(text: widget.donation!.category.toString());
+    _email.value = TextEditingValue(text: widget.donation!.email.toString());
+    _mobileNumber.value =
+        TextEditingValue(text: widget.donation!.mobileNumber.toString());
+    _location.value =
+        TextEditingValue(text: widget.donation!.location.toString());
+    _category.value =
+        TextEditingValue(text: widget.donation!.category.toString());
     _description.value =
         TextEditingValue(text: widget.donation!.description.toString());
   }
@@ -191,9 +204,56 @@ class _EditDonation extends State<EditDonation> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Edit Donation'),
-        backgroundColor: Theme.of(context).primaryColor,
+      elevation: 4,
+      centerTitle: false,
+      automaticallyImplyLeading: false,
+      backgroundColor: Color(0xff3a57e8),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.zero,
       ),
+      title: Text(
+        "Edit Donation",
+        style: TextStyle(
+          fontWeight: FontWeight.w700,
+          fontStyle: FontStyle.normal,
+          fontSize: 20,
+          color: Color(0xffffffff),
+        ),
+      ),
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        color: Color(0xffffffff),
+        iconSize: 24,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ListDonation(),
+            ),
+          );
+        },
+      ),
+    ),
+    bottomNavigationBar: BottomNavigationBar(
+      items: flutterVizBottomNavigationBarItems
+          .map((FlutterVizBottomNavigationBarModel item) {
+        return BottomNavigationBarItem(
+          icon: Icon(item.icon),
+          label: item.label,
+        );
+      }).toList(),
+      backgroundColor: Color(0xffffffff),
+      currentIndex: 1,
+      elevation: 8,
+      iconSize: 24,
+      selectedItemColor: Color(0xff3a57e8),
+      unselectedItemColor: Color(0xff9e9e9e),
+      selectedFontSize: 14,
+      unselectedFontSize: 14,
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+      onTap: (value) {},
+    ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

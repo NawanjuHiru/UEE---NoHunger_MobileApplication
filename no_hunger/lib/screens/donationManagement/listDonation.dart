@@ -4,6 +4,9 @@ import 'package:no_hunger/models/donationManagement/donation.dart';
 import 'package:no_hunger/screens/donationManagement/addDonation.dart';
 import 'package:no_hunger/screens/donationManagement/editDonation.dart';
 import 'package:no_hunger/services/donationManagement/donationService.dart';
+import 'package:no_hunger/widgets/FlutterVizBottomNavigationBarModel.dart';
+
+import '../dashboard/dashboard.dart';
 
 class ListDonation extends StatefulWidget {
   @override
@@ -14,14 +17,26 @@ class ListDonation extends StatefulWidget {
 
 class _ListDonation extends State<ListDonation> {
   final Stream<QuerySnapshot> collectionReference = donationService.readDonation();
+
+  List<FlutterVizBottomNavigationBarModel> flutterVizBottomNavigationBarItems =
+  [
+    FlutterVizBottomNavigationBarModel(icon: Icons.home, label: "Home"),
+    FlutterVizBottomNavigationBarModel(icon: Icons.article, label: "Donation"),
+    FlutterVizBottomNavigationBarModel(icon: Icons.location_on, label: "Place"),
+    FlutterVizBottomNavigationBarModel(icon: Icons.credit_card, label: "Post"),
+    FlutterVizBottomNavigationBarModel(icon: Icons.account_circle, label: "Account")
+  ];
+
   //FirebaseFirestore.instance.collection('Employee').snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text("List of Donations"),
-        backgroundColor: Theme.of(context).primaryColor,
+        elevation: 4,
+        centerTitle: false,
+        automaticallyImplyLeading: false,
+        backgroundColor: Color(0xff3a57e8),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -40,6 +55,51 @@ class _ListDonation extends State<ListDonation> {
             },
           )
         ],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.zero,
+        ),
+        title: Text(
+          "List Of Donations",
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontStyle: FontStyle.normal,
+            fontSize: 20,
+            color: Color(0xffffffff),
+          ),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: Color(0xffffffff),
+          iconSize: 24, 
+          onPressed: () {
+            Navigator.push(
+              context, 
+              MaterialPageRoute(
+                builder: (context) => DashboardScreen(),
+              ),
+            );
+          },
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: flutterVizBottomNavigationBarItems
+            .map((FlutterVizBottomNavigationBarModel item) {
+          return BottomNavigationBarItem(
+            icon: Icon(item.icon),
+            label: item.label,
+          );
+        }).toList(),
+        backgroundColor: Color(0xffffffff),
+        currentIndex: 1,
+        elevation: 8,
+        iconSize: 24,
+        selectedItemColor: Color(0xff3a57e8),
+        unselectedItemColor: Color(0xff9e9e9e),
+        selectedFontSize: 14,
+        unselectedFontSize: 14,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        onTap: (value) {},
       ),
       body: StreamBuilder(
         stream: collectionReference,
@@ -53,17 +113,17 @@ class _ListDonation extends State<ListDonation> {
                       child: Column(children: [
                     ListTile(
                       title: Text(e["name"]),
-                      // subtitle: Container(
-                      //   child: (Column(
-                      //     crossAxisAlignment: CrossAxisAlignment.start,
-                      //     children: <Widget>[
-                      //       Text("Name : " + e['name'],
-                      //           style: const TextStyle(fontSize: 14)),
-                      //       Text("Category: " + e['category'],
-                      //           style: const TextStyle(fontSize: 12)),
-                      //     ],
-                      //   )),
-                      // ),
+                      subtitle: Container(
+                        child: (Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text("Name : " + e['name'],
+                                style: const TextStyle(fontSize: 14)),
+                            Text("Category: " + e['category'],
+                                style: const TextStyle(fontSize: 12)),
+                          ],
+                        )),
+                      ),
                     ),
                     ButtonBar(
                       alignment: MainAxisAlignment.spaceBetween,
@@ -74,7 +134,7 @@ class _ListDonation extends State<ListDonation> {
                             primary: const Color.fromARGB(255, 143, 133, 226),
                             textStyle: const TextStyle(fontSize: 20),
                           ),
-                          child: const Text('Edit'),
+                          child: const Text('Edit',style: TextStyle(color: Color(0xff3a57e8))),
                           onPressed: () {
                             Navigator.pushAndRemoveUntil<dynamic>(
                               context,
@@ -104,7 +164,7 @@ class _ListDonation extends State<ListDonation> {
                             primary: const Color.fromARGB(255, 143, 133, 226),
                             textStyle: const TextStyle(fontSize: 20),
                           ),
-                          child: const Text('Delete'),
+                          child: const Text('Delete',style: TextStyle(color: Color.fromARGB(255, 232, 58, 58))),
                           onPressed: () async {
                             var response =
                                 await donationService.deleteDonation(docId: e.id);
