@@ -1,6 +1,8 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:flutter/material.dart';
+import 'package:no_hunger/screens/dashboard/dashboard.dart';
+import 'package:no_hunger/screens/nav%20bar/nav.dart';
 import 'package:no_hunger/screens/placeManagement/addplace.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:no_hunger/models/placeManagement/place.dart';
@@ -27,6 +29,15 @@ class _ListPlace extends State<ListPlace> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: BackButton(onPressed: () {
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (context) => Nav(),
+                                ),
+                              );
+                            }
+        ),
         title: const Text("List of Places"),
         backgroundColor: Theme.of(context).primaryColor,
         actions: <Widget>[
@@ -59,13 +70,14 @@ class _ListPlace extends State<ListPlace> {
                   return Card(
                       child: Column(children: [
                     ListTile(
-                      title: Text(e["location"]),
+                      title: Text(e["location"],style: const TextStyle(fontSize: 20)),
+                      
                       subtitle: Container(
                         child: (Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text("date: " + e['date'],
-                                style: const TextStyle(fontSize: 14)),
+                                style: const TextStyle(fontSize: 16)),
                             Text("Contact Number: " + e['contactno'],
                                 style: const TextStyle(fontSize: 12)),
                           ],
@@ -78,7 +90,7 @@ class _ListPlace extends State<ListPlace> {
                         TextButton(
                           style: TextButton.styleFrom(
                             padding: const EdgeInsets.all(5.0),
-                            primary: const Color.fromARGB(255, 143, 133, 226),
+                            primary: Color.fromARGB(255, 21, 6, 186),
                             textStyle: const TextStyle(fontSize: 20),
                           ),
                           child: const Text('Edit'),
@@ -107,7 +119,7 @@ class _ListPlace extends State<ListPlace> {
                         TextButton(
                           style: TextButton.styleFrom(
                             padding: const EdgeInsets.all(5.0),
-                            primary: const Color.fromARGB(255, 143, 133, 226),
+                            primary: Color.fromARGB(255, 221, 26, 26),
                             textStyle: const TextStyle(fontSize: 20),
                           ),
                           child: const Text('Delete'),

@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: <Widget>[
             Container(
-              color: Colors.blue[900],
+              color: Color(0xff3a57e8),
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.70,
               child: Center(
@@ -40,18 +40,19 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 30,
+                          height: 100,
                         ),
                         Text(
-                          "Login",
+                          "Sign In",
+                          
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 255, 255, 255),
                             fontSize: 40,
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 40,
                         ),
                         TextFormField(
                           controller: emailController,
@@ -136,14 +137,16 @@ class _LoginPageState extends State<LoginPage> {
                           keyboardType: TextInputType.emailAddress,
                         ),
 
-
+                        SizedBox(
+                          height: 40,
+                        ),
                         
                         ElevatedButton(
                         child: Text(
-                            "Forgot Password ....",
+                            "Forgot Password",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 18,
+                              fontSize: 15,
                               decoration: TextDecoration.underline,
                             ),
                           ),
@@ -153,11 +156,11 @@ class _LoginPageState extends State<LoginPage> {
                                     builder: (context) => Forgotpass()));
                           },
                        style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,
+                              backgroundColor: Colors.blue[900],
                               foregroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                              // side: BorderSide(color: Colors.black, width: 1),
-                              ),
+                              // shape: RoundedRectangleBorder(
+                              // // side: BorderSide(color: Colors.black, width: 1),
+                              // ),
                              ),
                         ),
 
@@ -168,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20.0))),
-                          elevation: 5.0,
+                          elevation: 0.0,
                           height: 40,
                           onPressed: () {
                             setState(() {
@@ -212,7 +215,7 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 20,
+                      height: 60,
                     ),
                     MaterialButton(
                       shape: RoundedRectangleBorder(
@@ -242,24 +245,9 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 15,
                     ),
-                    Text(
-                      "Made by",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 40,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "WEBFUN",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                        color: Colors.yellowAccent[400],
-                      ),
-                    ),
+                    
+                    
+                    
                   ],
                 ),
               ),

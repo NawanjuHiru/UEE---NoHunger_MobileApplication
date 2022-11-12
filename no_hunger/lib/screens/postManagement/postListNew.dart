@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:no_hunger/screens/dashboard/dashboard.dart';
+import 'package:no_hunger/screens/nav%20bar/nav.dart';
 import 'package:no_hunger/screens/postManagement/addPost.dart';
 import 'package:no_hunger/screens/postManagement/viewPost.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
@@ -40,6 +41,15 @@ class _PostList extends State<PostList> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: BackButton(onPressed: () {
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (context) => Nav(),
+                                ),
+                              );
+                            }
+        ),
         title: const Text("Posts List"),
         backgroundColor: Color(0xff3a57e8),
         actions: <Widget>[

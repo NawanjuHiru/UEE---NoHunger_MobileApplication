@@ -181,12 +181,32 @@ class _EditPlace extends State<EditPlace> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        leading: BackButton(onPressed: () {
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(
+                                  builder: (context) => ListPlace(),
+                                ),
+                              );
+                            }
+        ),
         title: const Text('Edit Place'),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Container(
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Edit Place',
+                style: TextStyle(
+                  fontSize: 22,
+                ),
+              ),
+            ),
+          ),
           Form(
             key: _formKey,
             child: Padding(

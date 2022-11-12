@@ -57,7 +57,7 @@ class SplashScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Color(0x1f000000),
                     shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.zero,
+                    borderRadius:  BorderRadius.circular(20.0),
                     border: Border.all(color: Color(0x4d000000), width: 1),
                   ),
                   child: MaterialButton(
@@ -69,11 +69,11 @@ class SplashScreen extends StatelessWidget {
                           ),
                       );
                     },
-                    color: Color(0xff000000),
+                    color: Color.fromARGB(255, 2, 2, 73),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                      side: BorderSide(color: Color(0xff000000), width: 1),
+                      borderRadius: BorderRadius.circular(20.0),
+                      side: BorderSide(color: Color.fromARGB(255, 5, 1, 51), width: 1),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Text(

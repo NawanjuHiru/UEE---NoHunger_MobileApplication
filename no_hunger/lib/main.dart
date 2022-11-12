@@ -22,7 +22,6 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Color(0xff3a57e8),
-
       ),
       home: SplashScreen(),
     );
