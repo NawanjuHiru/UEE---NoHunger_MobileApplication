@@ -1,18 +1,19 @@
 class Donation {
-  String id;
-  String name;
-  String email;
-  int mobileNumber;
-  String location;
-  String category;
-  String description;
+  String? did;
+  String? name;
+  String? email;
+  String? mobileNumber;
+  String? location;
+  String? category;
+  String? description;
 
   Donation(
-      {required this.id,
-      required this.name,
-      required this.email,
-      required this.mobileNumber,
-      required this.location,
-      required this.category,
-      required this.description});
+      { this.did,
+       this.name,
+       this.email,
+       this.mobileNumber,
+       this.location,
+       this.category,
+       this.description,
+      });
 }

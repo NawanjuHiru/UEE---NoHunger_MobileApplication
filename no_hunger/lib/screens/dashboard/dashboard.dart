@@ -2,11 +2,12 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:no_hunger/screens/donationManagement/donationList.dart';
+import 'package:no_hunger/screens/donationManagement/listDonation.dart';
 import 'package:no_hunger/screens/placeManagement/listplace.dart';
 import 'package:no_hunger/screens/postManagement/postList.dart';
 import 'package:no_hunger/screens/postManagement/postListNew.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
+import '../donationManagement/addDonation.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -58,7 +59,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
-                              fontSize: 28,
+                              fontSize: 34,
                               color: Color(0xffffffff),
                             ),
                           ),
@@ -91,7 +92,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontStyle: FontStyle.normal,
-                                  fontSize: 22,
+                                  fontSize: 30,
                                   color: Color(0xffffffff),
                                 ),
                               ),
@@ -102,7 +103,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontStyle: FontStyle.normal,
-                                  fontSize: 22,
+                                  fontSize: 30,
                                   color: Color(0xfffba808),
                                 ),
                               ),
@@ -132,7 +133,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,
-                                fontSize: 14,
+                                fontSize: 18,
                                 color: Color(0xffffffff),
                               ),
                             ),
@@ -200,7 +201,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                              Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DonationListScreen(),
+                                builder: (context) => ListDonation(),
                                 ),
                             );
                           },
@@ -216,7 +217,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           child: Text(
                             "Donation",
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 20,
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
                             ),
@@ -288,7 +289,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           child: Text(
                             "Place",
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 20,
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
                             ),
@@ -360,7 +361,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           child: Text(
                             "Post",
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 20,
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
                             ),
@@ -378,8 +379,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Container(
               margin: EdgeInsets.all(0),
               padding: EdgeInsets.all(0),
-              width: 400,
-              height: 165,
+              width: 420,
+              height: 320,
               decoration: BoxDecoration(
                 color: Color(0x1f000000),
                 shape: BoxShape.rectangle,

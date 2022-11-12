@@ -1,7 +1,6 @@
 
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:no_hunger/screens/donationManagement/donationList.dart';
 import 'package:no_hunger/screens/postManagement/editPost.dart';
 import 'package:no_hunger/screens/postManagement/postList.dart';
 import 'package:no_hunger/screens/postManagement/reviewPost.dart';

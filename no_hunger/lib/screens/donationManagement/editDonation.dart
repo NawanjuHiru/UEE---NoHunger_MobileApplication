@@ -1,10 +1,32 @@
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
-
 import 'package:flutter/material.dart';
-import 'package:no_hunger/screens/donationManagement/viewDonation.dart';
-import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
+import 'package:no_hunger/models/donationManagement/donation.dart';
+import 'package:no_hunger/services/donationManagement/donationService.dart';
+import 'package:no_hunger/widgets/FlutterVizBottomNavigationBarModel.dart';
 
-class EditDonationScreen extends StatelessWidget {
+import 'listDonation.dart';
+
+class EditDonation extends StatefulWidget {
+  final Donation? donation;
+  EditDonation({this.donation});
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _EditDonation();
+  }
+}
+
+class _EditDonation extends State<EditDonation> {
+  final _docid = TextEditingController();
+  final _name = TextEditingController();
+  final _email = TextEditingController();
+  final _mobileNumber = TextEditingController();
+  final _location = TextEditingController();
+  final _category = TextEditingController();
+  final _description = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   List<FlutterVizBottomNavigationBarModel> flutterVizBottomNavigationBarItems =
       [
     FlutterVizBottomNavigationBarModel(icon: Icons.home, label: "Home"),
@@ -16,9 +38,172 @@ class EditDonationScreen extends StatelessWidget {
   ];
 
   @override
+  void initState() {
+    // TODO: implement initState
+
+    _docid.value = TextEditingValue(text: widget.donation!.did.toString());
+    _name.value = TextEditingValue(text: widget.donation!.name.toString());
+    _email.value = TextEditingValue(text: widget.donation!.email.toString());
+    _mobileNumber.value =
+        TextEditingValue(text: widget.donation!.mobileNumber.toString());
+    _location.value =
+        TextEditingValue(text: widget.donation!.location.toString());
+    _category.value =
+        TextEditingValue(text: widget.donation!.category.toString());
+    _description.value =
+        TextEditingValue(text: widget.donation!.description.toString());
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final DocIDField = TextField(
+        controller: _docid,
+        readOnly: true,
+        autofocus: false,
+        decoration: InputDecoration(
+            contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            hintText: "Name",
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
+
+    final nameField = TextFormField(
+        controller: _name,
+        autofocus: false,
+        validator: (value) {
+          if (value == null || value.trim().isEmpty) {
+            return 'This field is required';
+          }
+        },
+        decoration: InputDecoration(
+            contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            hintText: "Name",
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
+    final emailField = TextFormField(
+        controller: _email,
+        autofocus: false,
+        validator: (value) {
+          if (value == null || value.trim().isEmpty) {
+            return 'This field is required';
+          }
+        },
+        decoration: InputDecoration(
+            contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            hintText: "Email",
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
+    final contactField = TextFormField(
+        controller: _mobileNumber,
+        autofocus: false,
+        validator: (value) {
+          if (value == null || value.trim().isEmpty) {
+            return 'This field is required';
+          }
+        },
+        decoration: InputDecoration(
+            contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            hintText: "Mobile Number",
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
+    final locationField = TextFormField(
+        controller: _location,
+        autofocus: false,
+        validator: (value) {
+          if (value == null || value.trim().isEmpty) {
+            return 'This field is required';
+          }
+        },
+        decoration: InputDecoration(
+            contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            hintText: "Location",
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
+    final categoryField = TextFormField(
+        controller: _category,
+        autofocus: false,
+        validator: (value) {
+          if (value == null || value.trim().isEmpty) {
+            return 'This field is required';
+          }
+        },
+        decoration: InputDecoration(
+            contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            hintText: "Category",
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
+    final descriptionField = TextFormField(
+        controller: _description,
+        autofocus: false,
+        validator: (value) {
+          if (value == null || value.trim().isEmpty) {
+            return 'This field is required';
+          }
+        },
+        decoration: InputDecoration(
+            contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            hintText: "Description",
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
+    final viewListbutton = TextButton(
+        onPressed: () {
+          Navigator.pushAndRemoveUntil<dynamic>(
+            context,
+            MaterialPageRoute<dynamic>(
+              builder: (BuildContext context) => ListDonation(),
+            ),
+            (route) => false, //if you want to disable back feature set to false
+          );
+        },
+        child: const Text('View List of Donations',
+            style: TextStyle(color: Color(0xff3a57e8))));
+
+    final SaveButon = Material(
+      elevation: 5.0,
+      borderRadius: BorderRadius.circular(30.0),
+      color: Color(0xff3a57e8),
+      child: MaterialButton(
+        minWidth: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+        onPressed: () async {
+          if (_formKey.currentState!.validate()) {
+            var response = await donationService.updateDonation(
+                docId: _docid.text,
+                name: _name.text,
+                email: _email.text,
+                mobileNumber: _mobileNumber.text,
+                location: _location.text,
+                category: _category.text,
+                description: _description.text);
+
+            if (response.code != 200) {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Text(response.message.toString()),
+                    );
+                  });
+            } else {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Text(response.message.toString()),
+                    );
+                  });
+            }
+          }
+        },
+        child: Text(
+          "Update",
+          style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 4,
         centerTitle: false,
@@ -28,7 +213,7 @@ class EditDonationScreen extends StatelessWidget {
           borderRadius: BorderRadius.zero,
         ),
         title: Text(
-          "Donation",
+          "Edit Donation",
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontStyle: FontStyle.normal,
@@ -39,12 +224,12 @@ class EditDonationScreen extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           color: Color(0xffffffff),
-          iconSize: 24, 
+          iconSize: 24,
           onPressed: () {
             Navigator.push(
-              context, 
+              context,
               MaterialPageRoute(
-                builder: (context) => ViewDonationScreen(),
+                builder: (context) => ListDonation(),
               ),
             );
           },
@@ -70,322 +255,39 @@ class EditDonationScreen extends StatelessWidget {
         showUnselectedLabels: true,
         onTap: (value) {},
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Text(
-                "Update Donation",
-                textAlign: TextAlign.start,
-                overflow: TextOverflow.clip,
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontStyle: FontStyle.normal,
-                  fontSize: 18,
-                  color: Color(0xff000000),
-                ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Form(
+            key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  // DocIDField,
+                  // const SizedBox(height: 25.0),
+                  nameField,
+                  const SizedBox(height: 15.0),
+                  emailField,
+                  const SizedBox(height: 15.0),
+                  contactField,
+                  const SizedBox(height: 15.0),
+                  locationField,
+                  const SizedBox(height: 15.0),
+                  categoryField,
+                  const SizedBox(height: 15.0),
+                  descriptionField,
+                  viewListbutton,
+                  const SizedBox(height: 45.0),
+                  SaveButon,
+                  const SizedBox(height: 15.0),
+                ],
               ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                child: TextField(
-                  controller: TextEditingController(),
-                  obscureText: false,
-                  textAlign: TextAlign.start,
-                  maxLines: 1,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 14,
-                    color: Color(0xff000000),
-                  ),
-                  decoration: InputDecoration(
-                    disabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                      borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                      borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                      borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
-                    ),
-                    hintText: "Name",
-                    hintStyle: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14,
-                      color: Color(0xff000000),
-                    ),
-                    filled: true,
-                    fillColor: Color(0xffffffff),
-                    isDense: false,
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                child: TextField(
-                  controller: TextEditingController(),
-                  obscureText: false,
-                  textAlign: TextAlign.start,
-                  maxLines: 1,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 14,
-                    color: Color(0xff000000),
-                  ),
-                  decoration: InputDecoration(
-                    disabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                      borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                      borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                      borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
-                    ),
-                    hintText: "Email",
-                    hintStyle: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14,
-                      color: Color(0xff000000),
-                    ),
-                    filled: true,
-                    fillColor: Color(0xffffffff),
-                    isDense: false,
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                child: TextField(
-                  controller: TextEditingController(),
-                  obscureText: false,
-                  textAlign: TextAlign.start,
-                  maxLines: 1,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 14,
-                    color: Color(0xff000000),
-                  ),
-                  decoration: InputDecoration(
-                    disabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                      borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                      borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                      borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
-                    ),
-                    hintText: "Mobile Number",
-                    hintStyle: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14,
-                      color: Color(0xff000000),
-                    ),
-                    filled: true,
-                    fillColor: Color(0xffffffff),
-                    isDense: false,
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                child: TextField(
-                  controller: TextEditingController(),
-                  obscureText: false,
-                  textAlign: TextAlign.start,
-                  maxLines: 1,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 14,
-                    color: Color(0xff000000),
-                  ),
-                  decoration: InputDecoration(
-                    disabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                      borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                      borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                      borderSide:
-                          BorderSide(color: Color(0xff000000), width: 1),
-                    ),
-                    hintText: "Location",
-                    hintStyle: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 14,
-                      color: Color(0xff000000),
-                    ),
-                    filled: true,
-                    fillColor: Color(0xffffffff),
-                    isDense: false,
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      "Category",
-                      textAlign: TextAlign.start,
-                      overflow: TextOverflow.clip,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14,
-                        color: Color(0xff000000),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(60, 0, 0, 0),
-                      child: Container(
-                        width: 130,
-                        height: 50,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                        decoration: BoxDecoration(
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(0),
-                        ),
-                        child: DropdownButton(
-                          value: "Food",
-                          items: ["Food", "Grocery", "Food & Grocery"]
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          style: TextStyle(
-                            color: Color(0xff000000),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                          ),
-                          onChanged: (value) {},
-                          elevation: 8,
-                          isExpanded: true,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              TextField(
-                controller: TextEditingController(),
-                obscureText: false,
-                textAlign: TextAlign.start,
-                maxLines: 1,
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontStyle: FontStyle.normal,
-                  fontSize: 14,
-                  color: Color(0xff000000),
-                ),
-                decoration: InputDecoration(
-                  disabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(22.0),
-                    borderSide: BorderSide(color: Color(0xff000000), width: 1),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(22.0),
-                    borderSide: BorderSide(color: Color(0xff000000), width: 1),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(22.0),
-                    borderSide: BorderSide(color: Color(0xff000000), width: 1),
-                  ),
-                  hintText: "Description",
-                  hintStyle: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 14,
-                    color: Color(0xff000000),
-                  ),
-                  filled: true,
-                  fillColor: Color(0xffffffff),
-                  isDense: false,
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: MaterialButton(
-                    onPressed: () {},
-                    color: Color(0xff4c2cf2),
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
-                      side: BorderSide(color: Color(0xff4c2cf2), width: 1),
-                    ),
-                    padding: EdgeInsets.all(16),
-                    child: Text(
-                      "Save",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        fontStyle: FontStyle.normal,
-                      ),
-                    ),
-                    textColor: Color(0xffffffff),
-                    height: 40,
-                    minWidth: 140,
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
