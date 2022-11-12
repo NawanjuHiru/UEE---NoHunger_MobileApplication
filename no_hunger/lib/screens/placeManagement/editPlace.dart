@@ -196,6 +196,17 @@ class _EditPlace extends State<EditPlace> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Container(
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Edit Place',
+                style: TextStyle(
+                  fontSize: 22,
+                ),
+              ),
+            ),
+          ),
           Form(
             key: _formKey,
             child: Padding(

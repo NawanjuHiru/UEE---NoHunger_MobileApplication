@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:no_hunger/screens/dashboard/dashboard.dart';
+import 'package:no_hunger/screens/nav%20bar/nav.dart';
 import 'package:no_hunger/screens/postManagement/addPost.dart';
 import 'package:no_hunger/screens/postManagement/viewPost.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
@@ -44,7 +45,7 @@ class _PostList extends State<PostList> {
                               Navigator.push(
                                 context, 
                                 MaterialPageRoute(
-                                  builder: (context) => DashboardScreen(),
+                                  builder: (context) => Nav(),
                                 ),
                               );
                             }

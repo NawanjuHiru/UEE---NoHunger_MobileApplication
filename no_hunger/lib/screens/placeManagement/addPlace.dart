@@ -191,6 +191,7 @@ class _AddPlace extends State<AddPlace> {
           "Save",
           style: TextStyle(color: Theme.of(context).primaryColorLight),
           textAlign: TextAlign.center,
+          
         ),
       ),
     );
