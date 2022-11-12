@@ -217,7 +217,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           child: Text(
                             "Donation",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 16,
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
                             ),
@@ -289,7 +289,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           child: Text(
                             "Place",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 16,
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
                             ),
@@ -361,7 +361,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           child: Text(
                             "Post",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 16,
                               fontWeight: FontWeight.w700,
                               fontStyle: FontStyle.normal,
                             ),

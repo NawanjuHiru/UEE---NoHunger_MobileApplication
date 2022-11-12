@@ -68,7 +68,7 @@ class _ListPlace extends State<ListPlace> {
               child: ListView(
                 children: snapshot.data!.docs.map((e) {
                   return Card(
-                    color: Color.fromARGB(255, 168, 205, 246), 
+                    color: Color(0xFFE1F5FE), 
                       child: Column(children: [
                     ListTile(
                       title: Text(e["location"],style: const TextStyle(fontSize: 20)),
