@@ -1,18 +1,10 @@
-///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
+
 
 import 'package:flutter/material.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
 
 class ProfileScreen extends StatelessWidget {
-  List<FlutterVizBottomNavigationBarModel> flutterVizBottomNavigationBarItems =
-      [
-    FlutterVizBottomNavigationBarModel(icon: Icons.home, label: "Home"),
-    FlutterVizBottomNavigationBarModel(icon: Icons.article, label: "Donation"),
-    FlutterVizBottomNavigationBarModel(icon: Icons.location_on, label: "Place"),
-    FlutterVizBottomNavigationBarModel(icon: Icons.credit_card, label: "Post"),
-    FlutterVizBottomNavigationBarModel(
-        icon: Icons.account_circle, label: "Account")
-  ];
+  
 
   @override
   Widget build(BuildContext context) {
@@ -41,26 +33,7 @@ class ProfileScreen extends StatelessWidget {
           size: 24,
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: flutterVizBottomNavigationBarItems
-            .map((FlutterVizBottomNavigationBarModel item) {
-          return BottomNavigationBarItem(
-            icon: Icon(item.icon),
-            label: item.label,
-          );
-        }).toList(),
-        backgroundColor: Color(0xffffffff),
-        currentIndex: 4,
-        elevation: 8,
-        iconSize: 24,
-        selectedItemColor: Color(0xff3a57e8),
-        unselectedItemColor: Color(0xff9e9e9e),
-        selectedFontSize: 14,
-        unselectedFontSize: 14,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        onTap: (value) {},
-      ),
+
       body: Padding(
         padding: EdgeInsets.all(16),
         child: SingleChildScrollView(

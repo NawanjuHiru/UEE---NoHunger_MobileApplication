@@ -4,6 +4,7 @@ import 'package:no_hunger/screens/dashboard/dashboard.dart';
 import 'package:no_hunger/screens/main/home.dart';
 import 'package:no_hunger/screens/placeManagement/listplace.dart';
 import 'package:no_hunger/screens/postManagement/postListNew.dart';
+import 'package:no_hunger/screens/userManagement/profile.dart';
 class Nav extends StatefulWidget {
   @override
   _NavState createState() => _NavState();
@@ -16,7 +17,7 @@ class _NavState extends State<Nav> {
     Text('Messgaes Screen'),
     ListPlace(),
     PostList(),
-    Text('Messgaes Screen'),
+    ProfileScreen(),
   ];
 
   void _onItemTap(int index) {
