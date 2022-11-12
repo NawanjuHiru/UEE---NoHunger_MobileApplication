@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:no_hunger/screens/placeManagement/listplace.dart';
 import 'package:no_hunger/screens/postManagement/postListNew.dart';
 import '../../widgets/FlutterVizBottomNavigationBarModel.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '../../services/postManagement/postService.dart';
 import 'package:intl/intl.dart';
+import 'package:no_hunger/screens/nav%20bar/nav.dart';
+
+import '../dashboard/dashboard.dart';
+
+
 
 class AddPostScreen extends StatefulWidget {
 
@@ -29,15 +35,7 @@ class _AddPostScreen extends State<AddPostScreen> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  List<FlutterVizBottomNavigationBarModel> flutterVizBottomNavigationBarItems =
-  [
-    FlutterVizBottomNavigationBarModel(icon: Icons.home, label: "Home" ),
-    FlutterVizBottomNavigationBarModel(icon: Icons.article, label: "Donation"),
-    FlutterVizBottomNavigationBarModel(icon: Icons.location_on, label: "Place"),
-    FlutterVizBottomNavigationBarModel(icon: Icons.credit_card, label: "Post"),
-    FlutterVizBottomNavigationBarModel(
-        icon: Icons.account_circle, label: "Account")
-  ];
+
 
 
   @override
@@ -75,26 +73,7 @@ class _AddPostScreen extends State<AddPostScreen> {
           },
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: flutterVizBottomNavigationBarItems
-            .map((FlutterVizBottomNavigationBarModel item) {
-          return BottomNavigationBarItem(
-            icon: Icon(item.icon),
-            label: item.label,
-          );
-        }).toList(),
-        backgroundColor: Color(0xffffffff),
-        currentIndex: 0,
-        elevation: 8,
-        iconSize: 24,
-        selectedItemColor: Color(0xff3a57e8),
-        unselectedItemColor: Color(0xff9e9e9e),
-        selectedFontSize: 12,
-        unselectedFontSize: 12,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        onTap: (value) {},
-      ),
+
       body: Padding(
         padding: EdgeInsets.fromLTRB(16, 30, 16, 16),
         child: SingleChildScrollView(
