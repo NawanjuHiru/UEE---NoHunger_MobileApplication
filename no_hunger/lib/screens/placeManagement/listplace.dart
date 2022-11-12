@@ -68,6 +68,7 @@ class _ListPlace extends State<ListPlace> {
               child: ListView(
                 children: snapshot.data!.docs.map((e) {
                   return Card(
+                    color: Color.fromARGB(255, 168, 205, 246), 
                       child: Column(children: [
                     ListTile(
                       title: Text(e["location"],style: const TextStyle(fontSize: 20)),
@@ -123,6 +124,7 @@ class _ListPlace extends State<ListPlace> {
                             textStyle: const TextStyle(fontSize: 20),
                           ),
                           child: const Text('Delete'),
+                          
                           onPressed: () async {
                             var response =
                                 await PlaceService.deletePlace(docId: e.id);

@@ -172,7 +172,13 @@ class _EditPlace extends State<EditPlace> {
         },
         child: Text(
           "Update",
-          style: TextStyle(color: Theme.of(context).primaryColorLight),
+          
+          style: TextStyle(
+            color: Color.fromARGB(255, 255, 255, 255),
+            fontSize: 20,
+          
+          ),
+          
           textAlign: TextAlign.center,
         ),
       ),
@@ -208,6 +214,7 @@ class _EditPlace extends State<EditPlace> {
             ),
           ),
           Form(
+            
             key: _formKey,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -217,6 +224,7 @@ class _EditPlace extends State<EditPlace> {
                 children: <Widget>[
                   // DocIDField,
                   // const SizedBox(height: 25.0),
+                  
                   nameField,
                   const SizedBox(height: 15.0),
                   contactField,
