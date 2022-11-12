@@ -26,7 +26,7 @@ class _ForgotpassState extends State<Forgotpass> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                color: Colors.blue[900],
+                color: Color(0xff3a57e8),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * 0.70,
                 child: Center(
@@ -146,9 +146,6 @@ class _ForgotpassState extends State<Forgotpass> {
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
                           Visibility(
                               maintainSize: true,
                               maintainAnimation: true,
@@ -161,42 +158,6 @@ class _ForgotpassState extends State<Forgotpass> {
                         ],
                       ),
                     ),
-                  ),
-                ),
-              ),
-              Container(
-                color: Colors.white,
-                width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Text(
-                        "Made by",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "WEBFUN",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          color: Colors.yellowAccent[400],
-                        ),
-                      ),
-                    ],
                   ),
                 ),
               ),

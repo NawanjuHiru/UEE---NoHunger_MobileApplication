@@ -15,14 +15,10 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffe2e5e7),
-      
+      backgroundColor: Color(0xffffffff),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -198,11 +194,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                         child: MaterialButton(
                           onPressed: () {
-                             Navigator.push(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => ListDonation(),
-                                ),
+                              ),
                             );
                           },
                           color: Color(0xff4b73f8),
@@ -270,11 +266,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                         child: MaterialButton(
                           onPressed: () {
-                             Navigator.push(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => ListPlace(),
-                                ),
+                              ),
                             );
                           },
                           color: Color(0xff4b73f8),
@@ -342,11 +338,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                         child: MaterialButton(
                           onPressed: () {
-                             Navigator.push(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => PostList(),
-                                ),
+                              ),
                             );
                           },
                           color: Color(0xff4b73f8),
@@ -402,6 +398,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
     );
   }
+
   @override
   void initState() {
     super.initState();
