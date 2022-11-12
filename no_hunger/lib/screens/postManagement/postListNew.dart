@@ -80,7 +80,7 @@ class _PostList extends State<PostList> {
               child: ListView(
                 children: snapshot.data!.docs.map((p) {
                   return Card(
-                    color: Color(0xFFE1F5FE),  //0xFFB3E5FC //0xFF90CAF9
+                    color: Color(0xFFE1F5FE),  //0xFFB3E5FC //0xFF90CAF9 //0xFFE1F5FE
                       child: Column(children: [
                     ListTile(
                       title: Text(p["title"],

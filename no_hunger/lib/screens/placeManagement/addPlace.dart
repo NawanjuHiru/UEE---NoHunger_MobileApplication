@@ -58,10 +58,12 @@ class _AddPlace extends State<AddPlace> {
       padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
       height: MediaQuery.of(context).size.width / 3,
       child: Center(
+
           child: TextField(
         controller: _date,
         //editing controller of this TextField
         decoration: InputDecoration(
+          suffixIcon: Icon(Icons.calendar_today),
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(22.0),
             borderSide: BorderSide(color: Color(0xff000000), width: 1),
@@ -87,7 +89,7 @@ class _AddPlace extends State<AddPlace> {
           fillColor: Color(0xffffffff),
           isDense: false,
           contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-          icon: Icon(Icons.calendar_today), //icon of text field),
+          //icon of text field),
         ),
 
         readOnly: true,
